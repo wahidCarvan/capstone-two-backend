@@ -127,7 +127,7 @@ app.use('*', function (req, res) {
 let server;
 
 // this function connects to our database, then starts the server
-function runServer(databaseUrl = env.dbUrl, port = 8080) {
+function runServer(databaseUrl = env.dbUrl, port = process.env.PORT || 8080) {
   return new Promise((resolve, reject) => {
     mongoose.connect(databaseUrl, err => {
       if (err) {
