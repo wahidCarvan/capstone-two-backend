@@ -49,7 +49,7 @@ app.get('/products/:id', (req, res) => {
 	.catch((error) => {res.json(error)});
 
 });
-
+//added some notes
 // POST 
 app.post('/products', (req, res) => {
   const requiredFields = ['image', 'name', 'originalPrice', 'price', 'description'];
