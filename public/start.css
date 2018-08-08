@@ -1,0 +1,188 @@
+.topnav {
+    background-color: #2bb673;
+    overflow: hidden;
+}
+
+.topnav h1 {
+	font-size: 50px;
+	color: white;
+	text-align: center;
+}
+
+.topnav .login {
+	color: white;
+	float: right;
+}
+
+
+.container-fluid {
+	width: auto;
+	height: auto;
+}
+
+.copyright {
+	text-align: center;
+}
+
+.announcement-bar  {
+	text-align: center;
+	color: white;
+	font-size: 25px;
+	background-color: #2bb673;
+	/*not working need the font to be bold and bold*/
+	font-weight: 900;
+
+}
+
+.promo-image {
+
+}
+
+.weekly-giveaway {
+	text-align: center;
+}
+
+.home-logo {
+	text-align: left;
+}
+
+.add-to-cart .see-details {
+	text-align: center;
+
+}
+
+.card-text {
+	text-align: left;
+}
+
+.strikethrough-price {
+	text-decoration: line-through;
+}
+/*NOT WORKING*/
+.our-price {
+	font: 50px;
+}
+
+
+
+/*back to top button*/
+.back-to-top {
+
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #2bb673;
+    color: white;
+    padding: 5px 10px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.back-to-top:hover {
+    background-color: white; 
+    color: #2bb673; 
+    /*border: 2px solid #4CAF50;*/
+}
+
+
+.footer {
+	text-align: center;
+	padding: 5px;
+	border: 2px solid red;
+}
+
+.connect {
+	text-align: left;
+	padding: 10px;
+}
+
+.logo {
+	text-align: left;
+	color: #2bb673;
+}
+
+.search-box {
+	width: 100%;
+	text-align: center;
+
+}
+
+.log-in {
+	text-align: right;
+}
+nav {
+	background-color: white;
+	color: #2bb673;
+}
+
+.navbar {
+	background-color: white;
+	font:#2bb673;
+}
+
+/*nav bar for categoires and links*/
+
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
+/*.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}*/
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+/*.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}*/
+
+
+

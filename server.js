@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json());
-
+app.use(express.static('public'))
 // endpoints works GETALL
 app.get('/products', (req, res) => {
 	Product
@@ -48,7 +48,7 @@ app.get('/products/:id', (req, res) => {
 		if(!doc){
 			return res.status(400).json({error: "Try again"})
 		}
-		res.json(doc)
+		res.json(doc.serialize())
 
 	})
 	.catch((error) => {res.json(error)});
@@ -76,7 +76,7 @@ app.post('/products', (req, res) => {
 // if something goes wrong return the error
 Product.create(product, function(err, doc){
  if(err) return res.status(404).json(err);
- res.status(201).json(doc);
+ res.status(201).json(doc.serialize());
 });
 });
 
