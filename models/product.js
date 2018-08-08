@@ -1,4 +1,4 @@
-nconst mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 // this is our schema to represent the products
 const productSchema = mongoose.Schema({
