@@ -30,7 +30,9 @@ app.use(bodyParser.json());
 app.get('/products', (req, res) => {
 	Product
 		.find()
-		.then((docs) => {res.json(docs)})
+		.then((docs) => {res.json(docs.map(function(doc){
+      return doc.serialize()
+    })})
 		.catch((error) => {res.json(error)});
 	
 });

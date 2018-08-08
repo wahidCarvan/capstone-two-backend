@@ -9,6 +9,20 @@ const productSchema = mongoose.Schema({
   description:{type: String, required: true},
   image:{type:String, required: true}
 });
+
+productSchema.methods.serialize = function(){
+	return {
+		id:this._id,
+		description:this.description,
+		image:this.image,
+		price:this.price,
+		originalPrice:this.originalPrice,
+		name:this.name
+	};
+}
+
 // exporting the file make a new model so we can use elsewhere
 // Nameing the model name and schema is needed to make a mongoose schema
 module.exports = mongoose.model('Product', productSchema);
+
+ 
