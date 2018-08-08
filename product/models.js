@@ -23,6 +23,7 @@ productSchema.methods.serialize = function(){
 
 // exporting the file make a new model so we can use elsewhere
 // Nameing the model name and schema is needed to make a mongoose schema
-module.exports = mongoose.model('Product', productSchema);
 
+const Product = mongoose.model('Product', productSchema);
+module.exports ={Product} 
  
