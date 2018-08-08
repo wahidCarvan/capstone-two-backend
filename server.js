@@ -22,19 +22,22 @@ const bodyParser = require('body-parser');
 app.use(cors());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
- 
+
 // parse application/json
 app.use(bodyParser.json());
 
 // endpoints works GETALL
 app.get('/products', (req, res) => {
 	Product
-		.find()
-		.then((docs) => {res.json(docs.map(function(doc){
-      return doc.serialize()
-    })})
-		.catch((error) => {res.json(error)});
-	
+  .find()
+  .then((docs) => {
+    res.json(
+      docs.map(function(doc){
+        return doc.serialize()
+      }))
+  })
+  .catch((error) => {res.json(error)});
+
 });
 //get one
 app.get('/products/:id', (req, res) => {
@@ -71,11 +74,11 @@ app.post('/products', (req, res) => {
   	name: req.body.name
   }
 // if something goes wrong return the error
-  Product.create(product, function(err, doc){
-  	if(err) return res.status(404).json(err);
-  	  res.status(201).json(doc);
-	});
-  });
+Product.create(product, function(err, doc){
+ if(err) return res.status(404).json(err);
+ res.status(201).json(doc);
+});
+});
 
 
 
@@ -83,10 +86,10 @@ app.post('/products', (req, res) => {
 app.delete('/products/:id', (req, res) => {
   Product.deleteOne({_id: req.params.id}, function(err){
   	if(err) return res.status(404).json(err);
-  	  console.log(`Deleted item from cart \`${req.params.id}\``);
+   console.log(`Deleted item from cart \`${req.params.id}\``);
   			//204 means no message will be returned
-  		res.status(204).end();
-  });
+        res.status(204).end();
+      });
 
 });
 
@@ -139,10 +142,10 @@ function runServer(databaseUrl = env.dbUrl, port = process.env.PORT || 8080) {
         console.log(`Your app is listening on port ${port}`);
         resolve();
       })
-        .on('error', err => {
-          mongoose.disconnect();
-          reject(err);
-        });
+      .on('error', err => {
+        mongoose.disconnect();
+        reject(err);
+      });
     });
   });
 }
