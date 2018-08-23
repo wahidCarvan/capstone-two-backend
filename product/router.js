@@ -52,7 +52,7 @@ router.post('/', (req, res) => {
   }
 // if something goes wrong return the error
 Product.create(product, function(err, doc){
- if(err) return res.status(404).json(err);
+ if(err) return res.status(500).json(err);
  res.status(201).json(doc.serialize());
 });
 });
@@ -88,11 +88,15 @@ router.put('/:id', (req, res) => {
   }
   console.log(`Updating shopping cart \`${req.params.id}\``);
   Product.update({
-    id: req.params.id,
-    name: req.body.name,
-    budget: req.body.budget
+    image: req.body.image, 
+    originalPrice: req.body.originalPrice, 
+    price: req.body.price,
+    description: req.body.description,
+    name: req.body.name
   });
   res.status(204).end();
 });
 
 module.exports = {router}
+
+
