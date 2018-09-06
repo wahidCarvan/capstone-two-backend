@@ -15,17 +15,24 @@ const app = express();
 const cors = require('cors');
 
 
+
+
 const bodyParser = require('body-parser');
 const {router:productsRouter} = require("./product")
-
+const passport = require('passport');
+const { router: usersRouter } = require('./users');
+const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
+app.use(bodyParser.json());
 app.use(cors());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
+passport.use(localStrategy);
+passport.use(jwtStrategy);
 
-// parse application/json
-app.use(bodyParser.json());
+app.use('/users/', usersRouter);
+app.use('/auth/', authRouter);
 app.use(express.static('public'))
-app.use("/products", productsRouter)
+app.use("/products/", productsRouter)
 // endpoints works GETALL
 
 app.use('*', function (req, res) {

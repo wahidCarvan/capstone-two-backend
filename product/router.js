@@ -2,6 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router()
 const {Product} = require('./models');
+const passport = require('passport');
+
+const jwtAuth = passport.authenticate('jwt', { session: false });
+
 
 
 router.get('/', (req, res) => {
@@ -17,7 +21,7 @@ router.get('/', (req, res) => {
 
 });
 //get one
-router.get('/:id', (req, res) => {
+router.get('/:id',(req, res) => {
 	Product
 	//returns one findById
 	.findOne({_id:req.params.id})
@@ -33,7 +37,7 @@ router.get('/:id', (req, res) => {
 });
 //added some notes
 // POST 
-router.post('/', (req, res) => {
+router.post('/',jwtAuth, (req, res) => {
   const requiredFields = ['image', 'name', 'originalPrice', 'price', 'description'];
   for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
@@ -60,7 +64,7 @@ Product.create(product, function(err, doc){
 
 
 // DELETE works
-router.delete('/:id', (req, res) => {
+router.delete('/:id',jwtAuth, (req, res) => {
   Product.deleteOne({_id: req.params.id}, function(err){
   	if(err) return res.status(404).json(err);
    console.log(`Deleted item from cart \`${req.params.id}\``);
@@ -71,32 +75,23 @@ router.delete('/:id', (req, res) => {
 });
 
 //PUT
-router.put('/:id', (req, res) => {
-  const requiredFields = ['image', 'originalPrice', 'price', 'description'];
-  for (let i=0; i<requiredFields.length; i++) {
-    const field = requiredFields[i];
-    if (!(field in req.body)) {
-      const message = `Missing \`${field}\` in request body`
-      console.error(message);
-      return res.status(400).send(message);
+router.put('/:id',jwtAuth, (req, res) => {
+  const updatedableFields = ['image', 'originalPrice', 'price', 'description'];
+  const updated = {};
+  updatedableFields.forEach(field => {
+    if (field in req.body){
+      updated[field] = req.body[field];
     }
-  }
+  });
   if (req.params.id !== req.body.id) {
     const message = `Request path id (${req.params.id}) and request body id (${req.body.id}) must match`;
     console.error(message);
     return res.status(400).send(message);
   }
   console.log(`Updating shopping cart \`${req.params.id}\``);
-  Product.update({
-    image: req.body.image, 
-    originalPrice: req.body.originalPrice, 
-    price: req.body.price,
-    description: req.body.description,
-    name: req.body.name
-  });
-  res.status(204).end();
+  Product.findByIdAndUpdate(req.params.id, { $set: updated}, {new: true}).then(updatedProduct => res.status(204).end())
+  .catch(err => res.status(500).json({message: 'Something went wrong'})); 
 });
-
 module.exports = {router}
 
 

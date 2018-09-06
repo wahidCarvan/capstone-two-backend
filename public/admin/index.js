@@ -1,4 +1,30 @@
 // let PRODUCTS = [];
+// if user is  null we are not logged in
+let user = null;
+
+function failure(error){
+	//display the error to the screeen
+	//clear the error message when the screen updates
+	console.error(error.responseJSON.message);
+	$('#error-container').html(`<p>${error.responseJSON.message}</p>`);
+}
+
+function addUser(user, success, error){
+	const settings = {
+		url: '/users',
+		dataType: 'json',
+		type: 'POST',
+		data: user,
+		success,
+		error
+
+	}
+
+	$.ajax(settings);
+ 	
+}
+
+
 function addProduct(product, success, error){
 	// PRODUCTS.push(product)
 	// success()
@@ -7,6 +33,9 @@ function addProduct(product, success, error){
 		dataType: 'json',
 		type: 'POST',
 		data: product,
+		headers: {
+			'Authorization': `Bearer ${user}`
+		}, 
 		success,
 		error
 
@@ -14,6 +43,20 @@ function addProduct(product, success, error){
 
 	$.ajax(settings);
 } 
+function logIn(user, success, error){
+	const settings = {
+		url: '/auth/login',
+		dataType: 'json',
+		type: 'POST',
+		data: user,
+		success,
+		error
+
+	}
+
+	$.ajax(settings);
+
+}
 
 function getAllProducts(success, error){
 	// success(PRODUCTS)
@@ -57,10 +100,13 @@ function deleteProduct(id, success, error){
 		url: `/products/${id}`,
 		dataType: 'json',
 		type: 'DELETE',
+		headers: {
+			'Authorization': `Bearer ${user}`
+		}, 
 		success,
 		error
-
 		}
+
 	$.ajax(settings);
 
 } 
@@ -76,11 +122,16 @@ function editProduct(id, newValues, success, error){
 	// theProduct.price = newValues.price;
 
 	// success()
+	newValues.id = id;
 	const settings = {
 		url: `/products/${id}`,
 		dataType: 'json',
 		type: 'PUT',
 		data: newValues,
+		headers: {
+			'Authorization': `Bearer ${user}`
+			
+		}, 
 		success,
 		error
 
@@ -110,6 +161,36 @@ function generateProductHTML(product, index){
 	`
 
 }
+
+function generateSignUpForm(){
+	return  `<form id="js-signup-form">
+      <fieldset>
+        <legend>Sign Up</legend>
+        <label for="username">User Name</label>
+        <input type="text" id="username" name="username" required class="js-product-list-entry" placeholder="Enter a user name">
+        <label for="password">Password</label>
+        <input type="text" id="password" name="password" required class="js-product-list-entry" placeholder="enter a password">
+      </fieldset>
+      <button type="submit">Sign Up</button>
+    </form>
+   		 <a id="sign-in">Sign in</a>`
+
+	
+}
+
+function generateSignInForm(){
+	return  `<form id="js-signin-form">
+      <fieldset>
+        <legend>Sign In</legend>
+        <label for="username">User Name</label>
+        <input type="text" id="username" name="username" required class="js-product-list-entry" placeholder="Enter a user name">
+        <label for="password">Password</label>
+        <input type="text" id="password" name="password" required class="js-product-list-entry" placeholder="enter a password">
+      </fieldset>
+      <button type="submit">Sign In</button>
+    </form>`
+}
+
 //edit form
 function generateAddEditForm(product){
 	return `<form id="js-${product?"edit":"add"}-form" data-id="${product?product.id:''}">
@@ -132,6 +213,17 @@ function generateAddEditForm(product){
 	
 }
 
+function displaySigninForm(){
+	$('#form-container').html(generateSignInForm())
+
+
+}
+
+function displaySignupForm(){
+	$('#form-container').html(generateSignUpForm())
+
+}
+
 function displayAddEditForm(product){
 $('#form-container').html(generateAddEditForm(product))
 
@@ -151,6 +243,7 @@ function displayProductsHTML(products){
 }
 
 function getAndDisplayProducts(){
+	console.log(user)
 	getAllProducts(displayProductsHTML)
 }
 
@@ -170,8 +263,53 @@ function addFormsSubmitHandler(){
 		$('#product-description').val(""); 
 		$('#product-originalPrice').val(""); 
 		$('#product-price').val(""); 
-		const product = {image, name, description, originalPrice, price, id:uuid()};
-		addProduct(product, getAndDisplayProducts);
+		const product = {image, name, description, originalPrice, price};
+		addProduct(product, getAndDisplayProducts, failure);
+	});
+}
+
+function addSignInSubmitHandler(){
+	$('main').on('submit', '#js-signin-form', function(event){
+		event.preventDefault();
+		const username = $('#username').val(); 
+		const password = $('#password').val();
+		$('#username').val(""); 
+		$('#password').val("");
+		logIn({
+			username, password
+		},doLogin, failure)
+		});
+
+}
+
+function showSigninHandler(){
+	$('main').on('click', '#sign-in', function(event){
+		displaySigninForm()
+
+		});
+}
+
+function doLogin(response){
+	user = response.authToken
+	getAndDisplayProducts()
+	displayAddEditForm()
+}
+
+function doSignUp(response){
+
+}
+
+function addSignUpSubmitHandler(){
+	$('main').on('submit', '#js-signup-form', function(event){
+		event.preventDefault();
+		const username = $('#username').val(); 
+		const password = $('#password').val();
+		$('#username').val(""); 
+		$('#password').val("");
+		const login = {username, password};
+		addUser(login, doSignUp, failure)
+
+
 	});
 }
 
@@ -179,7 +317,6 @@ function editFormsSubmitHandler(){
 	$('main').on('submit', '#js-edit-form', function(event){
 		//stoping the default behavior
 		event.preventDefault();
-		console.log('hello');
 		const image = $('#product-image').val(); 
 		const name = $('#product-title').val();
 		const description = $('#product-description').val();
@@ -193,14 +330,14 @@ function editFormsSubmitHandler(){
 		$('#product-originalPrice').val(""); 
 		$('#product-price').val(""); 
 		const product = {image, name, description, originalPrice, price};
-		editProduct(id, product, getAndDisplayProducts);
+		editProduct(id, product, getAndDisplayProducts, failure);
 	});
 }
 
 function addDeleteHandler(){
 	$('.product-container').on('click', '.delete', function(event){
 		const id = $(event.currentTarget).data('id');
-		deleteProduct(id, getAndDisplayProducts);
+		deleteProduct(id, getAndDisplayProducts, failure);
 		})
 }
 
@@ -211,38 +348,48 @@ function addEditHandler(){
 		// 	return product.id === id
 		// })
 		// displayAddEditForm(product)
-		getAndEditProduct(id)
+		getAndEditProduct(id, failure)
 	})
 }
 
 
 
 $(function(){
-	displayAddEditForm()
 	addFormsSubmitHandler()
 	addDeleteHandler()
 	addEditHandler()
+	addSignInSubmitHandler()
+	addSignUpSubmitHandler()
 	editFormsSubmitHandler()
-	getAndDisplayProducts()
+	showSigninHandler()
+	if (user){
+		displayAddEditForm()
+		getAndDisplayProducts()
+	} else  { 
+		displaySignupForm()
 
+	}
+	
+
+	
 });
 
 
 
 
 
-function uuid() {
-  var uuid = "", i, random;
-  for (i = 0; i < 32; i++) {
-    random = Math.random() * 16 | 0;
+// function uuid() {
+//   var uuid = "", i, random;
+//   for (i = 0; i < 32; i++) {
+//     random = Math.random() * 16 | 0;
 
-    if (i == 8 || i == 12 || i == 16 || i == 20) {
-      uuid += "-"
-    }
-    uuid += (i == 12 ? 4 : (i == 16 ? (random & 3 | 8) : random)).toString(16);
-  }
-  return uuid;
-}
+//     if (i == 8 || i == 12 || i == 16 || i == 20) {
+//       uuid += "-"
+//     }
+//     uuid += (i == 12 ? 4 : (i == 16 ? (random & 3 | 8) : random)).toString(16);
+//   }
+//   return uuid;
+// }
 
 
 
