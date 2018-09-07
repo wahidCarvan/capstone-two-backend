@@ -3,10 +3,16 @@
 let user = null;
 
 function failure(error){
+	console.log(error.status)
+	if (error.status === 401){
+		$('#error-container').html(`<p>Login is wrong</p>`);
+	} else {
+		$('#error-container').html(`<p>${error.responseJSON.message}</p>`);
+	}
+
 	//display the error to the screeen
 	//clear the error message when the screen updates
 	console.error(error.responseJSON.message);
-	$('#error-container').html(`<p>${error.responseJSON.message}</p>`);
 }
 
 function addUser(user, success, error){
@@ -145,11 +151,10 @@ function generateProductHTML(product, index){
 	return `<div class="col-3">
 	<div class="card">
 	<img class="product-images" src="${product.image}" alt="place holder image"/>
-	<hr>
-	<h5 class="card-title">${product.name}</h5>
+	<h2 class="card-title">${product.name}</h2>
 	<div class="card-body">
 	<p class="card-text">
-	<h5 class="card-title">${product.description}</h5>
+	<p class="card-title">${product.description}</p>
 	<span class="strikethrough-price">${product.originalPrice}</span>
 	<br>
 	<span class="our-price">$${product.price}</span></p>
@@ -173,7 +178,7 @@ function generateSignUpForm(){
       </fieldset>
       <button type="submit">Sign Up</button>
     </form>
-   		 <a id="sign-in">Sign in</a>`
+   		 <a id="sign-in">Already have an account? <span>Sign in</span></a>`
 
 	
 }
@@ -215,17 +220,20 @@ function generateAddEditForm(product){
 
 function displaySigninForm(){
 	$('#form-container').html(generateSignInForm())
-
-
+	$('#error-container').empty()
+	$('h1').text('Protek')
 }
 
 function displaySignupForm(){
 	$('#form-container').html(generateSignUpForm())
+	$('#error-container').empty()
+	$('h1').text('Protek')
 
 }
 
 function displayAddEditForm(product){
 $('#form-container').html(generateAddEditForm(product))
+$('#error-container').empty()
 
 }
 
@@ -240,11 +248,14 @@ function generateProductsHTML(products) {
 
 function displayProductsHTML(products){
 	$('.product-container').html(generateProductsHTML(products))
+	$('#error-container').empty()
+	$('h1').text('Product List')
 }
 
 function getAndDisplayProducts(){
 	console.log(user)
 	getAllProducts(displayProductsHTML)
+
 }
 
 
