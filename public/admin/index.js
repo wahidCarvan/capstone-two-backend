@@ -176,7 +176,7 @@ function generateSignUpForm(){
         <legend>Sign Up</legend>
         <label for="username">User Name</label>
         <input type="text" id="username" name="username" required class="js-product-list-entry" placeholder="Enter a user name">
-        <label for="password">Password</label>
+        <label for="password">Password</label><br>
         <input type="text" id="password" name="password" required class="js-product-list-entry" placeholder="enter a password">
       </fieldset>
       <button type="submit">Sign Up</button>
