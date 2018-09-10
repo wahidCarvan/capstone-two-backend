@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" type="text/css" href="../home.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <!-- Responsive viewport tag, tells small screens that it's responsive -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="add products">
@@ -13,11 +17,15 @@
   <link rel="stylesheet" type="text/css" href="float-grid.css">
 </head>
 <body>
-  <main class="container">
+  <header>
     <h1>Protek</h1>
+    <button id="logOutButton">Log Out</button>
+  </header>
+  <main class="container">
     <section id="form-container"></section>
     <section id="error-container"></section>
     <section class="product-container row"></section>
+
  </main>
  <!-- adding jQuery file -->
  <script

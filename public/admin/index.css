@@ -16,6 +16,7 @@ button:hover {
 
 form {
   margin-bottom: 25px;
+  width: 50%;
 
 }
 
@@ -55,5 +56,40 @@ form {
    text-decoration: line-through;
 }
 
+.hidden {
+  display: none;
+}
 
-/*h2 needs to be styled */
+header h1, header button {
+  position: absolute;
+  display: inline-block;
+}
+
+header {
+  height: 10ex;
+  padding: 5px, 10px;
+
+}
+
+header h1 {
+
+}
+
+header button {
+  right:2ex;
+  top: 2ex;
+
+}
+
+#sign-in p {
+  text-decoration: underline;
+  color:blue;
+}
+
+fieldset {
+  margin-bottom: 2ex; 
+}
+
+ul {
+  list-style-type: none;
+}

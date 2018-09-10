@@ -2,6 +2,8 @@
 // if user is  null we are not logged in
 let user = null;
 
+
+
 function failure(error){
 	console.log(error.status)
 	if (error.status === 401){
@@ -167,6 +169,7 @@ function generateProductHTML(product, index){
 
 }
 
+
 function generateSignUpForm(){
 	return  `<form id="js-signup-form">
       <fieldset>
@@ -178,7 +181,7 @@ function generateSignUpForm(){
       </fieldset>
       <button type="submit">Sign Up</button>
     </form>
-   		 <a id="sign-in">Already have an account? <span>Sign in</span></a>`
+   		 <a id="sign-in">Already have an account? <p>Sign in</p></a>`
 
 	
 }
@@ -201,33 +204,45 @@ function generateAddEditForm(product){
 	return `<form id="js-${product?"edit":"add"}-form" data-id="${product?product.id:''}">
       <fieldset>
         <legend>Add an Item</legend>
-        <label for="product-image">Image(url)</label>
+        <ul>
+        <li><label for="product-image">Image(url)</label>
         <input type="text" id="product-image" name="image" class="js-product-list-entry" placeholder="e.g., http:url" ${product?`value="${product.image}"`:''}>
-        <label for="product-title">Title:</label>
+        </li>
+        <li><label for="product-title">Title:</label>
         <input type="text" id="product-title" name="name" class="js-product-list-entry" placeholder="e.g., Blue Jeans"  ${product?`value="${product.name}"`:''}>
-        <label for="product-description">Description</label>
+         </li>
+        <li><label for="product-description">Description</label>
         <input type="text" id="product-description" name="description" class="js-product-list-entry" placeholder="e.g., Blue Jeans with a rip in the knee caps"  ${product?`value="${product.description}"`:''}>
-        <label for="product-originalPrice">Strikthrough Price</label>
+         </li>
+        <li><label for="product-originalPrice">Strikthrough Price</label>
         <input type="text" id="product-originalPrice" name="originalPrice" class="js-product-list-entry" placeholder="e.g., $9.99"  ${product?`value="${product.originalPrice}"`:''}>
-        <label for="product-price">Price</label>
+         </li>
+        <li><label for="product-price">Price</label>
         <input type="text" id="product-price" name="price" class="js-product-list-entry" placeholder="e.g., $4.99"  ${product?`value="${product.price}"`:''}>
-
+        </li>
+        </ul>
       </fieldset>
       <button type="submit">${product?"edit":"add"} Item</button>
     </form>`
 	
 }
 
+
+
 function displaySigninForm(){
 	$('#form-container').html(generateSignInForm())
 	$('#error-container').empty()
 	$('h1').text('Protek')
+	$('#logOutButton').addClass('hidden')
+	$('.product-container').empty()
 }
 
 function displaySignupForm(){
 	$('#form-container').html(generateSignUpForm())
 	$('#error-container').empty()
 	$('h1').text('Protek')
+	$('#logOutButton').addClass('hidden')
+	$('.product-container').empty()
 
 }
 
@@ -250,12 +265,17 @@ function displayProductsHTML(products){
 	$('.product-container').html(generateProductsHTML(products))
 	$('#error-container').empty()
 	$('h1').text('Product List')
+	$('#logOutButton').removeClass('hidden')
 }
 
 function getAndDisplayProducts(){
 	console.log(user)
 	getAllProducts(displayProductsHTML)
 
+}
+
+function logOutHandler() {
+	$('#logOutButton').click(doLogOut)
 }
 
 
@@ -304,6 +324,11 @@ function doLogin(response){
 	user = response.authToken
 	getAndDisplayProducts()
 	displayAddEditForm()
+}
+
+function doLogOut(){
+	user = null
+	displaySignupForm()
 }
 
 function doSignUp(response){
@@ -373,6 +398,7 @@ $(function(){
 	addSignUpSubmitHandler()
 	editFormsSubmitHandler()
 	showSigninHandler()
+	logOutHandler()
 	if (user){
 		displayAddEditForm()
 		getAndDisplayProducts()
