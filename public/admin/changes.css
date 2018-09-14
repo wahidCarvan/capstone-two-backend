@@ -1,0 +1,37 @@
+h2 {
+	color: red;
+	text-align: center;
+	font-size: 50px;
+}
+
+.add-to-cart {
+	font-size: 25px;
+	color: white;
+	background-color: #2bb673;
+	text-align: center;
+  	cursor: pointer;
+}
+
+hr {
+	width: 11%;
+	background-color: #2bb673;
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0; 
+}
+
+.strikethrough-price{
+	text-decoration: line-through;
+}
+
+.our-price {
+	font-size: 40px;
+	color: red;
+}
+
+p {
+ margin:0;
+}

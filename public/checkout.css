@@ -1,3 +1,13 @@
+body {
+  font-family: Arial;
+  font-size: 17px;
+  padding: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 .row {
   display: -ms-flexbox; /* IE10 */
   display: flex;
@@ -28,15 +38,11 @@
 }
 
 .container {
-  /*background-color: #f2f2f2;*/
-
+  background-color: #f2f2f2;
   padding: 5px 20px 15px 20px;
   border: 1px solid lightgrey;
   border-radius: 3px;
-  width: 50%;
-  float: left;
 }
-
 
 input[type=text] {
   width: 100%;
@@ -73,54 +79,20 @@ label {
   background-color: #45a049;
 }
 
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
 span.price {
   float: right;
   color: grey;
 }
 
-
-.topnav {
-  font-size: 50px;
-  /*border: 2px solid red;*/
-  color: white;
-   background-color: #2bb673;
-   margin-bottom: 50px;
-  
-}
-.checkout {
-   background-color: #2bb673;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.checkout-btn {
-  text-align: center;
-}
-
-select {
-  width: 100%;
-}
-
-.checkout {
- text-align: center;
-}
-
-.logo {
-  color: white;
-}
-
-.float-right {
-  float: right;
-}
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (and change the direction - make the "cart" column go on top) */
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
 @media (max-width: 800px) {
   .row {
     flex-direction: column-reverse;

@@ -156,7 +156,7 @@ function generateProductHTML(product, index){
 	<h2 class="card-title">${product.name}</h2>
 	<div class="card-body">
 	<p class="card-text">
-	<p class="card-title">${product.description}</p>
+	<p class="card-title">$${product.description}</p>
 	<span class="strikethrough-price">${product.originalPrice}</span>
 	<br>
 	<span class="our-price">$${product.price}</span></p>
@@ -176,7 +176,7 @@ function generateSignUpForm(){
         <legend>Sign Up</legend>
         <label for="username">User Name</label>
         <input type="text" id="username" name="username" required class="js-product-list-entry" placeholder="Enter a user name">
-        <label for="password">Password</label><br>
+        <br><label for="password">Password</label>	
         <input type="text" id="password" name="password" required class="js-product-list-entry" placeholder="enter a password">
       </fieldset>
       <button type="submit">Sign Up</button>
@@ -222,7 +222,7 @@ function generateAddEditForm(product){
         </li>
         </ul>
       </fieldset>
-      <button type="submit">${product?"edit":"add"} Item</button>
+      <button class="add-to-cart" type="submit">${product?"edit":"add"} Item</button>
     </form>`
 	
 }

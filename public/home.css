@@ -27,12 +27,14 @@
 .announcement-bar  {
 	text-align: center;
 	color: white;
-	font-size: 25px;
+	font-size: 12px;
 	background-color: #2bb673;
 	/*not working need the font to be bold and bold*/
 	font-weight: 900;
 
 }
+
+
 
 /*.promo-image {
 
@@ -89,7 +91,7 @@
 .footer {
 	text-align: center;
 	padding: 5px;
-	border: 2px solid red;
+    background-color: #2bb673
 }
 
 .connect {
@@ -200,6 +202,7 @@ nav {
 	padding: 20px;
     width: 100%;
 }
+
 
 .navbar {
 	background-color: white;
