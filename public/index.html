@@ -1,201 +1,58 @@
-	<!DOCTYPE html>
-	<html>
-	<head>
-		  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Responsive viewport tag, tells small screens that it's responsive -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- used in seo -->
+  <meta name="description" content="find the latest and greatest in tech for less">
+  <!-- used in seo -->
+  <title>Protek</title>
 
-		<title>Home Page</title>
-		<link rel="stylesheet" type="text/css" href="home.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-		<!-- Bootstrap core CSS -->
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-		<!-- google fonts -->
-		<link href="https://fonts.googleapis.com/css?family=Raleway|Roboto" rel="stylesheet">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-		<!-- product list -->
-		<script type="text/javascript" src="productList.js">
-		</script>
-		<script type="text/javascript" src="renderProducts.js">
-		</script>
-		<script type="text/javascript" src="shoppingCart.js"></script>
-	</head>
-	<body>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-		<!-- announcemnet bar -->
-		<div class="announcement-bar">
-			<h1>Free Shipping || Free Returns || 1 Year Warranty </h1>
-			<h3>Protek is your destination for the coolest gifts and gadgets</h3>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" type="text/css" href="float-grid.css">
+</head>
+<body>
+  <img class="logo" src="https://pbs.twimg.com/profile_images/626363365577859072/k_Z1BkE5_400x400.png" alt="company logo">
+  <header>
+    <h1>Protek Seller's Page</h1>
+    
+    <button id="logOutButton">Log Out</button>
+  </header>
+  <h2>Home of the free 2 way shipping</h2>
+ 
+  <!-- Trigger/Open The Modal -->
 
-		</div>
-		
-	<!-- navigational div -->
-		<div class="main-nav">
-	<!-- <div class="search"> -->
-	<nav class="navbar navbar-inverse">
-		<span class="logo">
-		<a href="index.html">Protek</a>
-		</span>
-		<span class="search-box">
-		  <form action="/action_page.php">
-	      <input type="text" placeholder="Find your next deal" name="search">
-	      <button type="submit"><i class="fa fa-search"></i></button>
-	    </form>
-	    </span>
-	    <span class="left">
-	    	<a href="sign-up.html">
-	    		<span class="log-in">Sign Up</span>
-	    	</a>
-	    
-	    <a href="checkoutMain.html"> <i class="fa fa-shopping-cart" 
-	    	style="font-size:36px"></i>
-	    </a>
-	    </span>
-	 <!-- </div> -->
-	<div class="main-navbar">
-<!-- <div class="navbar"> -->
- <!--  <div class="dropdown">
-    <button class="dropbtn">Categories 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-    </div>
-  </div>  -->
-  <!-- <div class="navbar"> -->
-	 <a href="product-categories.html">Trending Deals</a>
-	 <a href="product-categories.html">Best Sellers</a>
-	 <!-- product test zone -->
-	 <a href="product-categories.html">JUST IN -- WHILE SUPPLIES LAST</a>	  
-	 <a href="product-categories.html">&hearts; Pet's &hearts;</a>
-	 <a href="product-categories.html">Electronics</a>
-	 <a href="product-categories.html">Daily Dollar Deals</a>
-</div>
-<!-- </div>	 -->
-<!-- </div> -->
-</div>
-<br>
-<br>
+  
+<main class="container">
+    <section id="form-container"></section>
+    <section id="error-container"></section>
+    <section class="product-container row"></section>
+    <button id="myBtn">Help!</button>
+<!-- The Modal -->
+<div id="myModal" class="modal">
 
-
-	<!-- changes every 5 seconds -->
-<!-- <div class="slide-changer">
-  <img class="mySlides" src="http://via.placeholder.com/550x150">
-  <img class="mySlides" src="http://via.placeholder.com/250x150">
-  <img class="mySlides" src="http://via.placeholder.com/150x150">
-</div> -->
-	
-	<!-- NEEDS TO BOOTSTRAP CARDS WITH MODALS ONCE CLICKED -->
-	<div class="container">
-		<div class="row" id="product-details">
-		</div>
-	</div>
-	<br>
-	<br>
-	
-
-	<footer>
-<div>
-	<!-- Grid row -->
-	<hr>
-	<div class="row">
-	<!-- Grid column -->
-	<!-- Grid column -->
-	<div class="col-3">
-
-		<!-- Links -->
-		<h6 class="text-uppercase font-weight-bold">Make money with us</h6>
-		<hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-		<p>
-		<a href="affliate-program.html">Affliate Program</a>
-		</p>
-	</div>
-	<div class="col-3">
-
-		<!-- Content -->
-		<!-- h6 needs to be a different color -->
-		<h5 class="text-uppercase font-weight-bold">Get to Know us</h5>
-		<hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-		<p>
-		<a href="about-us.html">About Us</a>
-		</p>
-		 <!--  <p>
-		<a href="#">Careers</a>
-		</p>  --> 
-		<p>
-		<!-- <a href="#">Blog</a>
-		</p> 
-		 <p> -->
-		<!-- <a href="#">Investors</a>
-		</p>  -->
-
-		 <p>
-		<a href="privacy.html">Privacy Policy</a>
-		</p>
-		  <p>
-		<a href="spam.html">Spam Policy</a>
-		</p> 
-	</div>
-	<!-- Grid column -->
-
-<!-- ADD PADDING TO ALL SIDES. -->
-	<!-- Grid column -->
-	<div class="col-3">
-		<!-- Links -->
-		<h6 class="text-uppercase font-weight-bold">Let us help you</h6>
-		<hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-		<p><a href="mailto:wahidc7101@gmail.com?Subject=Questions" target="_top">Contact Us</a></p>
-		<p>
-		<a href="returns.html">Returns</a>
-		</p><p>
-		<a href="faq.html">FAQ</a>
-		</p><p>
-		<a href="warranty.html">Warranty</a>
-		</p><p>
-		<a href="shipping.html">Shipping</a>
-		</p>
-		
-	</div>
-
-	<div class="col-3">
-		<h6 class="text-uppercase font-weight-bold">Social</h6>
-
-	<!-- Facebook -->
-		<a class="fb-ic">
-			<a href="https://www.facebook.com" target="_blank">
-				<i class="fa fa-facebook white-text mr-4"> </i>
-			</a>
-		</a>
-
-		<!-- Twitter -->
-		<a class="tw-ic">
-		<a href="https://www.twitter.com" target="_blank">
-		<i class="fa fa-twitter white-text mr-4"> </i>
-		</a>
-	
-		<!-- Google +-->
-		<a class="gplus-ic">
-				<a href="https://www.https://plus.google.com/discover.com" target="_blank">
-		<i class="fa fa-google-plus white-text mr-4"> </i>
-		</a>
-		</a>
-	
-		<!--Linkedin -->
-		<a class="li-ic">
-		<a href="https://www.Linkedin.com" target="_blank">
-		<i class="fa fa-linkedin white-text mr-4"> </i>
-		</a>
-		</a>
-		<!--Instagram-->
-		<a class="ins-ic">
-		<a href="https://www.instagram.com" target="_blank">
-		<i class="fa fa-instagram white-text"> </i>
-		</a>
-		
-	</div>
+  <!-- Modal content -->
+<div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Welcome to the Protek product posting page.</p>
+    <p>If you have a account simply, sign in to get started</p>
+    <p>If you do not have a account, sign up for one to start posting products to your account</p>
 </div>
 
-<!-- Copyright -->
-<div class="footer-copyright text-center py-3">© 2018 protek</div>
-</footer>
 
+ </div>
+
+ </main>
+
+
+<!-- always run the server when starting the app node server will run the server. only applies to node -->
+ <!-- adding jQuery file -->
+ <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+ <script type="text/javascript" src="index.js"></script>
+</body>
+</html>

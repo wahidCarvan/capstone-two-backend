@@ -156,7 +156,12 @@ function generateProductHTML(product, index){
 	<h2 class="card-title">${product.name}</h2>
 	<div class="card-body">
 	<p class="card-text">
-	<p class="card-title">$${product.description}</p>
+	<ul>
+	<li class="card-title">$${product.description}</li>
+	<li class="card-title">$${product.description}</li>
+	<li class="card-title">$${product.description}</li>
+	<li class="card-title">$${product.description}</li>
+	<ul>
 	<span class="strikethrough-price">${product.originalPrice}</span>
 	<br>
 	<span class="our-price">$${product.price}</span></p>
@@ -171,13 +176,21 @@ function generateProductHTML(product, index){
 
 
 function generateSignUpForm(){
-	return  `<form id="js-signup-form">
+	console.log('hello');
+	return  
+	`<form id="js-signup-form" class="signup-form">
       <fieldset>
         <legend>Sign Up</legend>
-        <label for="username">User Name</label>
+        <ul>
+        <li><label for="username">User Name</label>
         <input type="text" id="username" name="username" required class="js-product-list-entry" placeholder="Enter a user name">
-        <br><label for="password">Password</label>	
-        <input type="text" id="password" name="password" required class="js-product-list-entry" placeholder="enter a password">
+        </li>
+        <li>
+        <label for="password">Password</label>		
+        <input type="text" id="password" name="password" pattern=".{10,}" required class="js-product-list-entry" placeholder="password 10 or more ">
+        </li>
+        </ul>
+
       </fieldset>
       <button type="submit">Sign Up</button>
     </form>
@@ -187,6 +200,7 @@ function generateSignUpForm(){
 }
 
 function generateSignInForm(){
+	console.log('hello');
 	return  `<form id="js-signin-form">
       <fieldset>
         <legend>Sign In</legend>
@@ -238,6 +252,7 @@ function displaySigninForm(){
 }
 
 function displaySignupForm(){
+	console.log('hellasdfhlksfd')	
 	$('#form-container').html(generateSignUpForm())
 	$('#error-container').empty()
 	$('h1').text('Protek')
@@ -386,6 +401,33 @@ function addEditHandler(){
 		// displayAddEditForm(product)
 		getAndEditProduct(id, failure)
 	})
+}
+
+
+// Get the modal
+const modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+const btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+const span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
 
 
