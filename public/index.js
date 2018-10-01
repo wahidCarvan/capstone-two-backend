@@ -177,41 +177,49 @@ function generateProductHTML(product, index){
 
 function generateSignUpForm(){
 	console.log('hello');
-	return  
-	`<form id="js-signup-form" class="signup-form">
-      <fieldset>
-        <legend>Sign Up</legend>
-        <ul>
-        <li><label for="username">User Name</label>
-        <input type="text" id="username" name="username" required class="js-product-list-entry" placeholder="Enter a user name">
-        </li>
-        <li>
-        <label for="password">Password</label>		
-        <input type="text" id="password" name="password" pattern=".{10,}" required class="js-product-list-entry" placeholder="password 10 or more ">
-        </li>
-        </ul>
+	return `<form id="js-signup-form" class="signup-form">
+    <fieldset>
+      <legend>Sign up</legend>
+      <label for="username">User Name</label>
+      <input type="text" id="username" name="username" required class="js-product-list-entry"
+       placeholder="Enter a user name"/>
 
-      </fieldset>
-      <button type="submit">Sign Up</button>
-    </form>
-   		 <a id="sign-in">Already have an account? <p>Sign in</p></a>`
-
-	
+      <label for="password">Password</label>
+      <input type="text" id="password" name="password"
+      required class"js-product-list-entry" placeholder="Enter 10 or more characters" />
+       </fieldset>
+      <button type="submit">Sign up</button>
+  </form>
+   <p class=js-account>Already have an account?</p>  
+  <a id="sign-in">Sign in</a>`
 }
 
+
+
+
+
+
+
 function generateSignInForm(){
-	console.log('hello');
-	return  `<form id="js-signin-form">
+	return  `<form id="js-signin-form" class"signup-form>
       <fieldset>
-        <legend>Sign In</legend>
+        <legend>Sign Up</legend>
         <label for="username">User Name</label>
         <input type="text" id="username" name="username" required class="js-product-list-entry" placeholder="Enter a user name">
+
         <label for="password">Password</label>
-        <input type="text" id="password" name="password" required class="js-product-list-entry" placeholder="enter a password">
+        <input type="text" id="password" name="password" required class="js-product-list-entry" placeholder="Enter your password">
       </fieldset>
       <button type="submit">Sign In</button>
     </form>`
 }
+
+
+
+
+
+
+
 
 //edit form
 function generateAddEditForm(product){
@@ -247,17 +255,20 @@ function displaySigninForm(){
 	$('#form-container').html(generateSignInForm())
 	$('#error-container').empty()
 	$('h1').text('Protek')
+	$('h2').text('Sign in to post products')
 	$('#logOutButton').addClass('hidden')
 	$('.product-container').empty()
+	// not working
 }
 
 function displaySignupForm(){
-	console.log('hellasdfhlksfd')	
+	
 	$('#form-container').html(generateSignUpForm())
 	$('#error-container').empty()
 	$('h1').text('Protek')
 	$('#logOutButton').addClass('hidden')
 	$('.product-container').empty()
+	$('#helpButton').addClass('hidden');
 
 }
 
@@ -358,9 +369,7 @@ function addSignUpSubmitHandler(){
 		$('#username').val(""); 
 		$('#password').val("");
 		const login = {username, password};
-		addUser(login, doSignUp, failure)
-
-
+		addUser(login, doSignUp, failure);
 	});
 }
 
@@ -408,7 +417,7 @@ function addEditHandler(){
 const modal = document.getElementById('myModal');
 
 // Get the button that opens the modal
-const btn = document.getElementById("myBtn");
+const btn = document.getElementById("helpButton");
 
 // Get the <span> element that closes the modal
 const span = document.getElementsByClassName("close")[0];

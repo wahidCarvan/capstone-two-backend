@@ -19,13 +19,14 @@
   <img class="logo" src="https://tf-assets-prod.s3.amazonaws.com/tf-curric/WEB-DEV-001/2.5.2_challenge_signup_form/logo.png" alt="AnalogSea" />
 
   <!-- design note: usually, you want to put as little friction as possible in the experience of signing up. Your marketers might want to know the customer's name, but if the customer doesn't fill out the form because they're sick of giving you info about themselves, that's not going to help you. Recognize that there can be a tension between getting data from a user and getting them to follow through  and submit that data as easily and quickly as possible. -->
-  <form role="form" action="/signup" accept-charset="UTF-8" method="post" class="signup-form">
+  <form id="js-signup-form" role="form" action="/signup" accept-charset="UTF-8" method="post" class="signup-form">
     <fieldset>
       <legend>Sign up</legend>
-      <label for="user-email">Email</label>
-      <input type="email" placeholder="foo@bar.com" name="user-email" id="user-email" required/>
+      <label id="username" for="user-email">Email</label>
+      <input type="email" placeholder="foo@bar.com" name="user-email" id="user-email" class="js-product-list-entry" required/>
+
       <label for="user-password">Password</label>
-      <input placeholder="1234passw0rd" type="password" name="user-password" id="user-password" required/>
+      <input  placeholder="1234password" type="password" name="user-password" id="user-password" required/>
       <button type="submit">Sign up</button>
     </fieldset>
   </form>
