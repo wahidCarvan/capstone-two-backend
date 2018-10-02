@@ -176,14 +176,12 @@ function generateProductHTML(product, index){
 
 
 function generateSignUpForm(){
-	console.log('hello');
 	return `<form id="js-signup-form" class="signup-form">
     <fieldset>
       <legend>Sign up</legend>
       <label for="username">User Name</label>
       <input type="text" id="username" name="username" required class="js-product-list-entry"
        placeholder="Enter a user name"/>
-
       <label for="password">Password</label>
       <input type="text" id="password" name="password"
       required class"js-product-list-entry" placeholder="Enter 10 or more characters" />
@@ -201,27 +199,22 @@ function generateSignUpForm(){
 
 
 function generateSignInForm(){
-	return  `<form id="js-signin-form" class"signup-form>
+	return  `<form id="js-signin-form" class="signup-form">
       <fieldset>
-        <legend>Sign Up</legend>
-        <label for="username">User Name</label>
-        <input type="text" id="username" name="username" required class="js-product-list-entry" placeholder="Enter a user name">
+        <legend>Sign In</legend>
 
+        <label for="username">User Name</label>
+
+        <input type="text" id="username" name="username" required class="js-product-list-entry" placeholder="Enter a user name">
         <label for="password">Password</label>
         <input type="text" id="password" name="password" required class="js-product-list-entry" placeholder="Enter your password">
       </fieldset>
       <button type="submit">Sign In</button>
     </form>`
+
 }
 
-
-
-
-
-
-
-
-//edit form
+//edit form FORM NEEDS TO LOOK MORE PROFESSIONAL
 function generateAddEditForm(product){
 	return `<form id="js-${product?"edit":"add"}-form" data-id="${product?product.id:''}">
       <fieldset>
@@ -245,7 +238,9 @@ function generateAddEditForm(product){
         </ul>
       </fieldset>
       <button class="add-to-cart" type="submit">${product?"edit":"add"} Item</button>
-    </form>`
+    </form>
+     
+    `
 	
 }
 
@@ -275,6 +270,7 @@ function displaySignupForm(){
 function displayAddEditForm(product){
 $('#form-container').html(generateAddEditForm(product))
 $('#error-container').empty()
+$('h2').text('Protek Seller Page')
 
 }
 
@@ -457,14 +453,7 @@ $(function(){
 		displaySignupForm()
 
 	}
-	
-
-	
-});
-
-
-
-
+	});
 
 // function uuid() {
 //   var uuid = "", i, random;
@@ -478,62 +467,3 @@ $(function(){
 //   }
 //   return uuid;
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

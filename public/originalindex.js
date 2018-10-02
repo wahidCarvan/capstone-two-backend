@@ -1,8 +1,3 @@
-function generateSignUpForm(){
-    console.log('hello');
-    return `<form id="js-signup-form" class="signup-form">
-    <fieldset>// let PRODUCTS = [];
-// if user is  null we are not logged in
 let user = null;
 
 
