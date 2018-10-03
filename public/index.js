@@ -3,7 +3,6 @@
 let user = null;
 
 
-
 function failure(error){
 	console.log(error.status)
 	if (error.status === 401){
@@ -147,7 +146,8 @@ function editProduct(id, newValues, success, error){
 
 	$.ajax(settings);
 } 
-
+// change the size of the cards
+// 2 per row or 1 per row
 
 function generateProductHTML(product, index){
 	return `<div class="col-3">
@@ -157,9 +157,6 @@ function generateProductHTML(product, index){
 	<div class="card-body">
 	<p class="card-text">
 	<ul>
-	<li class="card-title">$${product.description}</li>
-	<li class="card-title">$${product.description}</li>
-	<li class="card-title">$${product.description}</li>
 	<li class="card-title">$${product.description}</li>
 	<ul>
 	<span class="strikethrough-price">${product.originalPrice}</span>
@@ -355,7 +352,7 @@ function doLogOut(){
 }
 
 function doSignUp(response){
-
+alert('Your signup was successfull, go ahead and log in');
 }
 
 function addSignUpSubmitHandler(){

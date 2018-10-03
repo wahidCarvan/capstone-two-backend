@@ -390,14 +390,14 @@ legend {
  }
 
  #add-to-list  {
-  background-color: white;
-  color:#2bb673 ;
+  background-color: #3385ff;
+  color:white ;
 
  }
 
  #add-to-list:hover {
-  background-color: blue;
-  color: red;
+  background-color: black;
+  color: white;
  }
 
 /*everything that needs to be mobile friendly will go inside*/
