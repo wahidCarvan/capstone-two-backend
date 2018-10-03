@@ -216,9 +216,10 @@ function generateSignInForm(){
 
 //edit form FORM NEEDS TO LOOK MORE PROFESSIONAL
 function generateAddEditForm(product){
-	return `<form id="js-${product?"edit":"add"}-form" data-id="${product?product.id:''}">
+	return `<div class="orange">
+	<form class="form-product" id="js-${product?"edit":"add"}-form" data-id="${product?product.id:''}">
       <fieldset>
-        <legend>Add an Item</legend>
+        <legend>Add a Product</legend>
         <ul>
         <li><label for="product-image">Image(url)</label>
         <input type="text" id="product-image" name="image" class="js-product-list-entry" placeholder="e.g., http:url" ${product?`value="${product.image}"`:''}>
@@ -237,9 +238,9 @@ function generateAddEditForm(product){
         </li>
         </ul>
       </fieldset>
-      <button class="add-to-cart" type="submit">${product?"edit":"add"} Item</button>
+          <button id="add-to-list"class="add-to-cart" type="submit">${product?"edit":"add"} Item</button>
     </form>
-     
+     </div>
     `
 	
 }

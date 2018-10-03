@@ -86,6 +86,7 @@ fieldset {
 
 ul {
   list-style-type: none;
+  padding-right: 40px;
 }
 
 .card-title {
@@ -93,7 +94,10 @@ ul {
   text-align: center;
 }
 
-
+/*.add-to-cart {
+  background-color: white;
+  color: blue;
+}*/
 h1{
   text-align: center;
   color: white;
@@ -101,11 +105,11 @@ h1{
   font-size: 50px;
 
 }
-#sign-in {
+#sign-in{
   color: blue;
   background-color: transparent;
-  text-decoration: underline;
 }
+
 
 h2 {
   text-align: center;
@@ -250,6 +254,7 @@ button[type="submit"] {
   border: 0;
   cursor: pointer;
   margin-bottom: 0;
+
   
 }
 
@@ -318,7 +323,27 @@ button[type="submit"]:focus {
 }*/
 
 /*end*/
+legend {
+    text-align: center;
+    font-size: 20px;
+    padding: 25px;
+}
 
+/*nav button */
+
+
+#logOutButton {
+  height: 50px;
+  /*margin-top: 5px;*/
+  margin-bottom: 5px;
+  border-radius: 50%;
+  vertical-align: right;
+  border: 1px solid black;
+  float: right;
+  background-color: white;
+  color: #2bb673; 
+  margin-right: 50px;
+}
 
 #sign-in {
   text-align: center;
@@ -329,15 +354,51 @@ button[type="submit"]:focus {
 
 
 
-.add-to-cart {
+/*.add-to-cart {
   background-color: white;
   color:#2bb673;
-}
-
+}*/
+/*
 #logOutButton {
-  /*position: fixed;*/
+  position: fixed;
   
+}*/
+
+/*test zone*/
+
+/*.orange {
+   border: 1px solid black;
+    padding: 25px 50px 75px 100px;
+    background-color: white;
 }
+*/
+
+/*.orange {
+  text-align: center;
+   background-color: lightgrey;
+    width: 300px;
+    border: 25px solid green;
+    padding: 25px;
+    margin: 25px;
+}*/
+.form-product { 
+  /*border:5px solid black;*/
+    width:100%; 
+    margin:0 auto;
+    background-color: white;
+
+ }
+
+ #add-to-list  {
+  background-color: white;
+  color:#2bb673 ;
+
+ }
+
+ #add-to-list:hover {
+  background-color: blue;
+  color: red;
+ }
 
 /*everything that needs to be mobile friendly will go inside*/
 @media only screen and (max-width: 640px) {
