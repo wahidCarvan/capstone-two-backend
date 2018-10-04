@@ -150,12 +150,9 @@ function editProduct(id, newValues, success, error){
 // 2 per row or 1 per row
 
 function generateProductHTML(product, index){
-	return `
-<div class="row">
-	<div class="col-4">
+	return `<div class="col-4">
 	<div class="card">
 	<img class="product-images" src="${product.image}" alt="place holder image"/>
-	<div class="card-content">
 	<h3 class="card-title">${product.name}</h3>
 	<div class="card-body">
 	<p class="card-text">
@@ -167,7 +164,6 @@ function generateProductHTML(product, index){
 	<span class="our-price">$${product.price}</span></p>
 	 <button class="delete" data-id="${product.id}">Delete</button>
  	 <button class="edit" data-id="${product.id}">Edit</button>
-	</div>
 	</div>
 	</div>
 	</div>
