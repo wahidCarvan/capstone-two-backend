@@ -150,28 +150,25 @@ function editProduct(id, newValues, success, error){
 // 2 per row or 1 per row
 
 function generateProductHTML(product, index){
-	return `
-<div class="row">
-	<div class="col-4">
-	<div class="card">
-	<img class="product-images" src="${product.image}" alt="place holder image"/>
-	<div class="card-content">
-	<h3 class="card-title">${product.name}</h3>
-	<div class="card-body">
-	<p class="card-text">
+	return `<div class="col-4">
+			<div class="card">
+	<img class="card-image" src="${product.image}"alt="place holder image"/>
+				<div class="card-content">
+	<h3>${product.name}</h3>
+	<p>${product.description}</p>
 	<ul>
-	<li class="card-title">${product.description}</li>
-	<ul>
+	<li>
 	<span class="strikethrough-price">$${product.originalPrice}</span>
-	<br>
-	<span class="our-price">$${product.price}</span></p>
-	 <button class="delete" data-id="${product.id}">Delete</button>
- 	 <button class="edit" data-id="${product.id}">Edit</button>
+	</li>
+	<li>
+	<span>$${product.price}</span>
+	</li>
+	 </ul>
+	 <div class="full-width"><button class="delete" data-id="${product.id}">Delete</button>
+ 	 <button class="edit" data-id="${product.id}">Edit</button></div>
+</div>
 	</div>
-	</div>
-	</div>
-	</div>
-	`
+		</div>`
 
 }
 
@@ -255,6 +252,7 @@ function displaySigninForm(){
 	$('h2').text('Sign in to post products')
 	$('#logOutButton').addClass('hidden')
 	$('.product-container').empty()
+	$('#helpButton').addClass('hidden');
 	// not working
 }
 
@@ -265,14 +263,16 @@ function displaySignupForm(){
 	$('h1').text('Protek')
 	$('#logOutButton').addClass('hidden')
 	$('.product-container').empty()
-	$('#helpButton').addClass('hidden');
+	$('#helpButton').removeClass('hidden');
+	
 
 }
 
 function displayAddEditForm(product){
 $('#form-container').html(generateAddEditForm(product))
 $('#error-container').empty()
-$('h2').text('Protek Seller Page')
+$('h2').text('Protek Seller Page');
+$('#helpButton').addClass('hidden');
 
 }
 

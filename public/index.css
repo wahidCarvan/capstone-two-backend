@@ -59,9 +59,7 @@ form {
    text-decoration: line-through;
 }
 
-.hidden {
-  display: none;
-}
+
 
 
 header {
@@ -87,7 +85,7 @@ fieldset {
 
 ul {
   list-style-type: none;
-  padding-right: 40px;
+  padding:0;
 }
 
 .card-title {
@@ -186,10 +184,10 @@ fieldset {
     cursor: pointer;
 }
 
-#helpButton{
+.help{
     margin: auto;
+    margin-top: 20px;
     display: block;
-    margin-top: 5px;
   }
 
 /*start */
@@ -368,11 +366,9 @@ legend {
 /*test zone*/
 
 /*.orange {
-   border: 1px solid black;
-    padding: 25px 50px 75px 100px;
-    background-color: white;
-}
-*/
+
+}*/
+
 
 /*.orange {
   text-align: center;
@@ -387,6 +383,7 @@ legend {
     width:100%; 
     margin:0 auto;
     background-color: white;
+    padding: 20px;
 
  }
 
@@ -401,6 +398,49 @@ legend {
   color: white;
  }
 
+
+.card {
+  border: 1px solid #E5E5E5;
+  margin-bottom: 20px;
+}
+
+.card-image {
+  width: 100%;
+}
+
+.card-content {
+  padding: 20px;
+  overflow: hidden;
+
+}
+
+.card-content h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.card-content p {
+  margin: 0.5em 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.delete, .edit {
+  text-align: center;
+  margin:auto;
+  width: 45%;
+
+}
+
+.full-width {
+  width: 100%;
+  text-align: center;
+}
+
+
+.hidden {
+  display: none;
+}
+
 /*everything that needs to be mobile friendly will go inside*/
 @media only screen and (max-width: 640px) {
   form {
@@ -408,7 +448,7 @@ legend {
   }
 
 .container {
-  width: 150%;
+  width: 100%;
 }
 
 

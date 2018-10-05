@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	
 <div class="row">
-	<div class="col-4">
-	<div class="card">
-	<img class="product-images card-image" src="${product.image}" alt="place holder image"/>
-	<div class="card-content">
+		<div class="col-4">
+			<div class="card">
+	<img class="card-image product-images" src="${product.image}"alt="place holder image"/>
+				<div class="card-content">
 	<h3 class="card-title">${product.name}</h3>
 	<p class="card-text">
 	<ul>
@@ -20,10 +13,7 @@
 	 <button class="delete" data-id="${product.id}">Delete</button>
  	 <button class="edit" data-id="${product.id}">Edit</button>
  	</ul>
-	
 </div>
-</div>
-</div>
-</div>
-</body>
-</html>
+	</div>
+		</div>
+			</div>`
