@@ -1,6 +1,8 @@
 // let PRODUCTS = [];
 // if user is  null we are not logged in
 let user = null;
+let userName = null;
+
 
 
 function failure(error){
@@ -31,15 +33,13 @@ function addUser(user, success, error){
  	
 }
 
-
-function addProduct(product, success, error){
-	// PRODUCTS.push(product)
-	// success()
+// needs to be add to wish list
+function addToWishlist(productId, success, error){
 	const settings = {
-		url: '/products',
+		url: `/users/${userName}/wishlist`,
 		dataType: 'json',
 		type: 'POST',
-		data: product,
+		data: {productId},
 		headers: {
 			'Authorization': `Bearer ${user}`
 		}, 
@@ -65,112 +65,8 @@ function logIn(user, success, error){
 
 }
 
-function getAllProducts(success, error){
-	// success(PRODUCTS)
-	const settings = {
-		url: '/products',
-		dataType: 'json',
-		type: 'GET',
-		success,
-		error
 
-	}
-	$.ajax(settings);
-}
 
-function getProduct(id, success, error){
-	// PRODUCTS = PRODUCTS.filter(function(product){
-		//return the ones the are not equal returns all the elements that are not deleted
-	// 	return id != product.id; 
-	// })
-	// success()
-	const settings = {
-		url: `/products/${id}`,
-		dataType: 'json',
-		type: 'GET',
-		success,
-		error
-		}
-
-	$.ajax(settings);
-
-} 
-// .filter returns all elements in the array that match. .find just returns one
-//arguments can be functions
-function deleteProduct(id, success, error){
-	// PRODUCTS = PRODUCTS.filter(function(product){
-		//return the ones the are not equal returns all the elements that are not deleted
-	// 	return id != product.id; 
-	// })
-	// success()
-	const settings = {
-		url: `/products/${id}`,
-		dataType: 'json',
-		type: 'DELETE',
-		headers: {
-			'Authorization': `Bearer ${user}`
-		}, 
-		success,
-		error
-		}
-
-	$.ajax(settings);
-
-} 
-
-function editProduct(id, newValues, success, error){
-	// const theProduct = PRODUCTS.find(function(product){
-	// 	return id === product.id;
-	// });
-	// theProduct.image = newValues.image;
-	// theProduct.name = newValues.name;
-	// theProduct.description = newValues.description;
-	// theProduct.originalPrice = newValues.originalPrice;
-	// theProduct.price = newValues.price;
-
-	// success()
-	newValues.id = id;
-	const settings = {
-		url: `/products/${id}`,
-		dataType: 'json',
-		type: 'PUT',
-		data: newValues,
-		headers: {
-			'Authorization': `Bearer ${user}`
-			
-		}, 
-		success,
-		error
-
-	}
-
-	$.ajax(settings);
-} 
-// change the size of the cards
-// 2 per row or 1 per row
-
-function generateProductHTML(product, index){
-	return `<div class="col-4">
-			<div class="card">
-	<img class="card-image" src="${product.image}"alt="place holder image"/>
-				<div class="card-content">
-	<h3>${product.name}</h3>
-	<p>${product.description}</p>
-	<ul>
-	<li>
-	<span class="strikethrough-price">$${product.originalPrice}</span>
-	</li>
-	<li>
-	<span>$${product.price}</span>
-	</li>
-	 </ul>
-	 <div class="full-width"><button class="delete" data-id="${product.id}">Delete</button>
- 	 <button class="edit" data-id="${product.id}">Edit</button></div>
-</div>
-	</div>
-		</div>`
-
-}
 
 
 function generateSignUpForm(){
@@ -181,7 +77,7 @@ function generateSignUpForm(){
       <input type="text" id="username" name="username" required class="js-product-list-entry"
        placeholder="Enter a user name"/>
       <label for="password">Password</label>
-      <input type="text" id="password" name="password"
+      <input type="password" id="password" name="password"
       required class"js-product-list-entry" placeholder="Enter 10 or more characters" />
        </fieldset>
       <button type="submit">Sign up</button>
@@ -205,44 +101,12 @@ function generateSignInForm(){
 
         <input type="text" id="username" name="username" required class="js-product-list-entry" placeholder="Enter a user name">
         <label for="password">Password</label>
-        <input type="text" id="password" name="password" required class="js-product-list-entry" placeholder="Enter your password">
+        <input type="password" id="password" name="password" required class="js-product-list-entry" placeholder="Enter your password">
       </fieldset>
       <button type="submit">Sign In</button>
     </form>`
 
 }
-
-//edit form FORM NEEDS TO LOOK MORE PROFESSIONAL
-function generateAddEditForm(product){
-	return `<div class="orange">
-	<form class="form-product" id="js-${product?"edit":"add"}-form" data-id="${product?product.id:''}">
-      <fieldset>
-        <legend>Add a Product</legend>
-        <ul>
-        <li><label for="product-image">Image(url)</label>
-        <input type="text" id="product-image" name="image" class="js-product-list-entry" placeholder="e.g., http:url" ${product?`value="${product.image}"`:''}>
-        </li>
-        <li><label for="product-title">Title:</label>
-        <input type="text" id="product-title" name="name" class="js-product-list-entry" placeholder="e.g., Blue Jeans"  ${product?`value="${product.name}"`:''}>
-         </li>
-        <li><label for="product-description">Description</label>
-        <input type="text" id="product-description" name="description" class="js-product-list-entry" placeholder="e.g., Blue Jeans with a rip in the knee caps"  ${product?`value="${product.description}"`:''}>
-         </li>
-        <li><label for="product-originalPrice">Strikthrough Price</label>
-        <input type="text" id="product-originalPrice" name="originalPrice" class="js-product-list-entry" placeholder="e.g., $9.99"  ${product?`value="${product.originalPrice}"`:''}>
-         </li>
-        <li><label for="product-price">Price</label>
-        <input type="text" id="product-price" name="price" class="js-product-list-entry" placeholder="e.g., $4.99"  ${product?`value="${product.price}"`:''}>
-        </li>
-        </ul>
-      </fieldset>
-          <button id="add-to-list"class="add-to-cart" type="submit">${product?"edit":"add"} Item</button>
-    </form>
-     </div>
-    `
-	
-}
-
 
 
 function displaySigninForm(){
@@ -268,60 +132,12 @@ function displaySignupForm(){
 
 }
 
-function displayAddEditForm(product){
-$('#form-container').html(generateAddEditForm(product))
-$('#error-container').empty()
-$('h2').text('Protek Seller Page');
-$('#helpButton').addClass('hidden');
 
-}
-
-function getAndEditProduct(id){
-	getProduct(id, displayAddEditForm)
-}
-
-function generateProductsHTML(products) {
-	return products.map(generateProductHTML).join("")
-}
-
-
-function displayProductsHTML(products){
-	$('.product-container').html(generateProductsHTML(products))
-	$('#error-container').empty()
-	$('h1').text('Product List')
-	$('#logOutButton').removeClass('hidden')
-}
-
-function getAndDisplayProducts(){
-	console.log(user)
-	getAllProducts(displayProductsHTML)
-
-}
 
 function logOutHandler() {
 	$('#logOutButton').click(doLogOut)
 }
 
-
-function addFormsSubmitHandler(){
-	$('main').on('submit', '#js-add-form', function(event){
-		//stoping the default behavior
-		event.preventDefault();
-		const image = $('#product-image').val(); 
-		const name = $('#product-title').val();
-		const description = $('#product-description').val();
-		const originalPrice = $('#product-originalPrice').val();
-		const price = $('#product-price').val();
-		// clears the check boxes
-		$('#product-image').val(""); 
-		$('#product-title').val(""); 
-		$('#product-description').val(""); 
-		$('#product-originalPrice').val(""); 
-		$('#product-price').val(""); 
-		const product = {image, name, description, originalPrice, price};
-		addProduct(product, getAndDisplayProducts, failure);
-	});
-}
 
 function addSignInSubmitHandler(){
 	$('main').on('submit', '#js-signin-form', function(event){
@@ -330,6 +146,7 @@ function addSignInSubmitHandler(){
 		const password = $('#password').val();
 		$('#username').val(""); 
 		$('#password').val("");
+		userName = username;
 		logIn({
 			username, password
 		},doLogin, failure)
@@ -345,9 +162,10 @@ function showSigninHandler(){
 }
 
 function doLogin(response){
+	$('#form-container').empty();
+	$('#error-container').empty();
 	user = response.authToken
 	getAndDisplayProducts()
-	displayAddEditForm()
 }
 
 function doLogOut(){
@@ -371,101 +189,33 @@ function addSignUpSubmitHandler(){
 	});
 }
 
-function editFormsSubmitHandler(){
-	$('main').on('submit', '#js-edit-form', function(event){
-		//stoping the default behavior
-		event.preventDefault();
-		const image = $('#product-image').val(); 
-		const name = $('#product-title').val();
-		const description = $('#product-description').val();
-		const originalPrice = $('#product-originalPrice').val();
-		const price = $('#product-price').val();
-		const id = $(event.currentTarget).data("id")
-		// clears the check boxes
-		$('#product-image').val(""); 
-		$('#product-title').val(""); 
-		$('#product-description').val(""); 
-		$('#product-originalPrice').val(""); 
-		$('#product-price').val(""); 
-		const product = {image, name, description, originalPrice, price};
-		editProduct(id, product, getAndDisplayProducts, failure);
-	});
+
+function addToWishListHandler(){
+		$('main').on('click', '.add-to-cart', function(event){
+			console.log('add to was clicked');
+			const id = event.currentTarget.dataset.id;
+			// grab the product with id add to cart
+			addToWishlist(id);
+			
+		});
+		console.log('wish handler logged out');
 }
 
-function addDeleteHandler(){
-	$('.product-container').on('click', '.delete', function(event){
-		const id = $(event.currentTarget).data('id');
-		deleteProduct(id, getAndDisplayProducts, failure);
-		})
-}
-
-function addEditHandler(){
-	$('.product-container').on('click', '.edit', function(event){
-		const id = $(event.currentTarget).data('id')
-		// const product = PRODUCTS.find(function(product){
-		// 	return product.id === id
-		// })
-		// displayAddEditForm(product)
-		getAndEditProduct(id, failure)
-	})
-}
-
-
-// Get the modal
-const modal = document.getElementById('myModal');
-
-// Get the button that opens the modal
-const btn = document.getElementById("helpButton");
-
-// Get the <span> element that closes the modal
-const span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-
-
+// sucess and failure for the wish list
 
 $(function(){
-	addFormsSubmitHandler()
-	addDeleteHandler()
-	addEditHandler()
 	addSignInSubmitHandler()
 	addSignUpSubmitHandler()
-	editFormsSubmitHandler()
 	showSigninHandler()
+	addToWishListHandler()
 	logOutHandler()
 	if (user){
-		displayAddEditForm()
 		getAndDisplayProducts()
 	} else  { 
 		displaySignupForm()
 
 	}
+
+
 	});
 
-// function uuid() {
-//   var uuid = "", i, random;
-//   for (i = 0; i < 32; i++) {
-//     random = Math.random() * 16 | 0;
-
-//     if (i == 8 || i == 12 || i == 16 || i == 20) {
-//       uuid += "-"
-//     }
-//     uuid += (i == 12 ? 4 : (i == 16 ? (random & 3 | 8) : random)).toString(16);
-//   }
-//   return uuid;
-// }

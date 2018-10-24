@@ -25,5 +25,5 @@ productSchema.methods.serialize = function(){
 // Nameing the model name and schema is needed to make a mongoose schema
 
 const Product = mongoose.model('Product', productSchema);
-module.exports ={Product} 
+module.exports ={Product, productSchema}
  

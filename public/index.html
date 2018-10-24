@@ -1,68 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-   <!-- used in seo -->
-  <title>Protek</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-   <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-  <!-- Responsive viewport tag, tells small screens that it's responsive -->
-  
-  <!-- used in seo -->
-  <meta name="description" content="find the latest and greatest in tech for less">
-   <!-- Normalize.css, a cross-browser reset file -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">
- 
-  <!-- google fonts -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-<!-- style sheets -->
-  <link rel="stylesheet" type="text/css" href="float-grid.css">
-  <link rel="stylesheet" href="index.css">
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Home Page</title>
+		<!-- favicon image -->
+		<link rel="shortcut icon" type="image/png" href="favicon.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="home.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!-- Bootstrap core CSS -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+		<link rel="stylesheet" href="float-grid.css"/>
+		<link rel="stylesheet" href="main.css"/> 
+		<link rel="stylesheet" href="index.css"/> 
+	</head>
+	<body>
+		<!-- <header role="banner"> -->
+			<!-- fix the font -->
+			<!-- <div class="announcement-bar">
+				<h2>A place to browse products and add to your wishlist</h2>
+			</div> -->
+			<nav class="navbar">
+				<span class="logo">
+					<a href="#">Protek</a>
+				</span>
+				<span class="left">
+					<a href="wish.html">&hearts; Wish List &hearts;</a>
+				</span>
+			</nav>
+		<!-- </header> -->
+		<main role="main">
+			<section role="region">
+				<form></form>
+			</section>
+			<section role="region">
 
-</head>
-<body>
-  <!-- <nav role="navigation" class="container"> -->
-    <button id="logOutButton">Log Out</button>
-     <!-- </nav> -->
-  <!-- <img class="logo" src="https://pbs.twimg.com/profile_images/626363365577859072/k_Z1BkE5_400x400.png" alt="company logo"> -->
-  <header>
-    <h1>Protek Seller's Page</h1>
-  </header>
-  <h2>Home of the free 2 way shipping</h2>
- 
-
-  <!-- Trigger/Open The Modal -->
-
-  
-<main class="container">
-    <section id="form-container"></section>
-    <section id="error-container"></section>
-    <!-- added this for the success message -->
-    <section id="success-container"></section>
-    <section class="product-container row"></section>
-    <!-- <button id="helpButton">Help!</button> -->
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-<div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Welcome to the Protek product posting page.</p>
-    <p>If you have a account simply, sign in to get started</p>
-    <p>If you do not have a account, sign up for one to start posting products to your account</p>
-</div>
-
-
- </div>
- <button class="help" id="helpButton">Help!</button>
- </main>
-
-
-
-<!-- always run the server when starting the app node server will run the server. only applies to node -->
- <!-- adding jQuery file -->
- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
- <script type="text/javascript" src="index.js"></script>
-</body>
-</html>
+				<div id="form-container"></div>
+			</section>
+			<section role="region">
+				<div id="error-container"></div>
+			</section>
+			<section role="region">
+				<div class="container">
+					<div class="row" id="product-details">
+					</div>
+				</section>
+				<hr>
+			</main>
+			<footer role="contentinfo">
+				<p class="copy">&copy; 2018 Protek</p>
+			</footer>
+			<!-- product list -->
+			<script type="text/javascript" src="productList.js">
+			</script>
+			<script type="text/javascript" src="renderProducts.js">
+			</script>
+			<script type="text/javascript" src="index.js"></script>
+		</body>
+		</html>

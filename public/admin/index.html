@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" type="image/png" href="favicon.png">
+  <!-- used in seo -->
+  <title>Protek</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <!-- Responsive viewport tag, tells small screens that it's responsive -->
+  <!-- used in seo -->
+  <meta name="description" content="find the latest and greatest in tech for less">
+  <!-- Normalize.css, a cross-browser reset file -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.css" rel="stylesheet">
+  <!-- google fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <!-- style sheets -->
+  <link rel="stylesheet" type="text/css" href="../float-grid.css">
+  <link rel="stylesheet" href="../index.css">
+</head>
+<body>
+  <button id="logOutButton">Log Out</button>
+  <header role="banner">
+    <h1>Protek Seller's Page</h1>
+       
+  </header>
+  <!-- Trigger/Open The Modal -->
+  <main role="main" class="container">
+ <h2>Seller central</h2>
+    <section role="region" id="form-container"></section>
+    <section role="region"  id="error-container"></section>
+    <!-- added this for the success message -->
+    <section role="region"  id="success-container"></section>
+    <section role="region"  class="product-container row"></section>
+    <!-- <button id="helpButton">Help!</button> -->
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Welcome to the Protek product posting page.</p>
+        <p>If you have a account simply, sign in to get started</p>
+        <p>If you do not have a account, sign up for one to start posting products to your account</p>
+      </div>
+    </div>
+    <button class="help" id="helpButton">Help!</button>
+  </main>
+  <!-- always run the server when starting the app node server will run the server. only applies to node -->
+  <!-- adding jQuery file -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="index.js"></script>
+</body>
+</html>

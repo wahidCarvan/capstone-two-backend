@@ -1,8 +1,10 @@
 'use strict';
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
+const {Product} =require('../product');
 
 mongoose.Promise = global.Promise;
+
 
 const UserSchema = mongoose.Schema({
   username: {
@@ -14,8 +16,10 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true
   },
+
   firstName: {type: String, default: ''},
-  lastName: {type: String, default: ''}
+  lastName: {type: String, default: ''},
+  wishlist: [Product.schema],
 });
 
 UserSchema.methods.serialize = function() {

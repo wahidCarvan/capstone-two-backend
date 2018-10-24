@@ -151,23 +151,24 @@ function editProduct(id, newValues, success, error){
 
 function generateProductHTML(product, index){
 	return `<div class="col-4">
-	<div class="card">
-	<img class="product-images" src="${product.image}" alt="place holder image"/>
-	<h3 class="card-title">${product.name}</h3>
-	<div class="card-body">
-	<p class="card-text">
+			<div class="card">
+	<img class="card-image" src="${product.image}"alt="place holder image"/>
+				<div class="card-content">
+	<h3>${product.name}</h3>
+	<p>${product.description}</p>
 	<ul>
-	<li class="card-title">${product.description}</li>
-	<ul>
+	<li>
 	<span class="strikethrough-price">$${product.originalPrice}</span>
-	<br>
-	<span class="our-price">$${product.price}</span></p>
-	 <button class="delete" data-id="${product.id}">Delete</button>
- 	 <button class="edit" data-id="${product.id}">Edit</button>
+	</li>
+	<li>
+	<span>$${product.price}</span>
+	</li>
+	 </ul>
+	 <div class="full-width"><button class="delete" data-id="${product.id}">Delete</button>
+ 	 <button class="edit" data-id="${product.id}">Edit</button></div>
+</div>
 	</div>
-	</div>
-	</div>
-	`
+		</div>`
 
 }
 
@@ -180,7 +181,7 @@ function generateSignUpForm(){
       <input type="text" id="username" name="username" required class="js-product-list-entry"
        placeholder="Enter a user name"/>
       <label for="password">Password</label>
-      <input type="text" id="password" name="password"
+      <input type="password" id="password" name="password"
       required class"js-product-list-entry" placeholder="Enter 10 or more characters" />
        </fieldset>
       <button type="submit">Sign up</button>
@@ -188,12 +189,6 @@ function generateSignUpForm(){
    <p class=js-account>Already have an account?</p>  
   <a id="sign-in">Sign in</a>`
 }
-
-
-
-
-
-
 
 function generateSignInForm(){
 	return  `<form id="js-signin-form" class="signup-form">
@@ -204,14 +199,13 @@ function generateSignInForm(){
 
         <input type="text" id="username" name="username" required class="js-product-list-entry" placeholder="Enter a user name">
         <label for="password">Password</label>
-        <input type="text" id="password" name="password" required class="js-product-list-entry" placeholder="Enter your password">
+        <input type="password" id="password" name="password" required class="js-product-list-entry" placeholder="Enter your password">
       </fieldset>
       <button type="submit">Sign In</button>
-    </form>`
-
+    </form>
+    <a class="back-home" href="index.html">Back to sign up</a>`
 }
 
-//edit form FORM NEEDS TO LOOK MORE PROFESSIONAL
 function generateAddEditForm(product){
 	return `<div class="orange">
 	<form class="form-product" id="js-${product?"edit":"add"}-form" data-id="${product?product.id:''}">
@@ -227,7 +221,7 @@ function generateAddEditForm(product){
         <li><label for="product-description">Description</label>
         <input type="text" id="product-description" name="description" class="js-product-list-entry" placeholder="e.g., Blue Jeans with a rip in the knee caps"  ${product?`value="${product.description}"`:''}>
          </li>
-        <li><label for="product-originalPrice">Strikthrough Price</label>
+        <li><label for="product-originalPrice">Strikethrough Price(MSRP Price)</label>
         <input type="text" id="product-originalPrice" name="originalPrice" class="js-product-list-entry" placeholder="e.g., $9.99"  ${product?`value="${product.originalPrice}"`:''}>
          </li>
         <li><label for="product-price">Price</label>
@@ -237,12 +231,8 @@ function generateAddEditForm(product){
       </fieldset>
           <button id="add-to-list"class="add-to-cart" type="submit">${product?"edit":"add"} Item</button>
     </form>
-     </div>
-    `
-	
+     </div> `
 }
-
-
 
 function displaySigninForm(){
 	$('#form-container').html(generateSignInForm())
@@ -251,6 +241,7 @@ function displaySigninForm(){
 	$('h2').text('Sign in to post products')
 	$('#logOutButton').addClass('hidden')
 	$('.product-container').empty()
+	$('#helpButton').addClass('hidden');
 	// not working
 }
 
@@ -261,14 +252,15 @@ function displaySignupForm(){
 	$('h1').text('Protek')
 	$('#logOutButton').addClass('hidden')
 	$('.product-container').empty()
-	$('#helpButton').addClass('hidden');
-
+	$('#helpButton').removeClass('hidden');
+	
 }
 
 function displayAddEditForm(product){
 $('#form-container').html(generateAddEditForm(product))
 $('#error-container').empty()
-$('h2').text('Protek Seller Page')
+$('h2').text('Protek Seller Page');
+$('#helpButton').addClass('hidden');
 
 }
 
@@ -279,7 +271,6 @@ function getAndEditProduct(id){
 function generateProductsHTML(products) {
 	return products.map(generateProductHTML).join("")
 }
-
 
 function displayProductsHTML(products){
 	$('.product-container').html(generateProductsHTML(products))
@@ -297,7 +288,6 @@ function getAndDisplayProducts(){
 function logOutHandler() {
 	$('#logOutButton').click(doLogOut)
 }
-
 
 function addFormsSubmitHandler(){
 	$('main').on('submit', '#js-add-form', function(event){
@@ -352,7 +342,7 @@ function doLogOut(){
 }
 
 function doSignUp(response){
-alert('Your signup was successfull, go ahead and log in');
+	alert('Your signup was successfull, go ahead and log in');
 }
 
 function addSignUpSubmitHandler(){
@@ -406,7 +396,6 @@ function addEditHandler(){
 	})
 }
 
-
 // Get the modal
 const modal = document.getElementById('myModal');
 
@@ -432,8 +421,6 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-
-
 
 $(function(){
 	addFormsSubmitHandler()

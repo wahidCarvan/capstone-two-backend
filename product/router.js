@@ -76,6 +76,7 @@ router.delete('/:id',jwtAuth, (req, res) => {
 
 //PUT
 router.put('/:id',jwtAuth, (req, res) => {
+   console.log(req.user.username);
   const updatedableFields = ['image', 'originalPrice', 'price', 'description'];
   const updated = {};
   updatedableFields.forEach(field => {

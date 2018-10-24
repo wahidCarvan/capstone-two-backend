@@ -1,15 +1,49 @@
 'use strict';
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const {User} = require('./models');
+const ObjectId = mongoose.Types.ObjectId;
 
 const router = express.Router();
 
-const jsonParser = bodyParser.json();
+const passport = require('passport');
+
+const jwtAuth = passport.authenticate('jwt', { session: false });
+
+// Put 
+router.post('/:username/wishlist',jwtAuth, (req, res) => { 
+  if(req.params.username === req.user.username){
+    const productId = req.body.productId;
+    if(productId){
+    User.update({username: req.user.username}, {$push: {wishlist: ObjectId(productId)}}).then(() =>{res.status(204).end()})
+
+    } else{
+      res.status(400).json({
+        message: 'you need a product id'
+      })
+
+    }
+  } else {
+    res.status(401).json({
+      message: 'you can only add items to your own wishlist!'
+    })
+
+  }
+})
+
+router.get('/:username/wishlist',(req, res) => { 
+  User.findOne({username: req.params.username}).populate('wishlist').then(populateUser => {
+    const wishlist = populateUser.wishlist.map(product =>{
+      return product.serialize()
+    })
+    res.json(wishlist)
+  })
+})
 
 // Post to register a new user
-router.post('/', jsonParser, (req, res) => {
+router.post('/', (req, res) => {
   const requiredFields = ['username', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
 
@@ -25,7 +59,7 @@ router.post('/', jsonParser, (req, res) => {
   const stringFields = ['username', 'password', 'firstName', 'lastName'];
   const nonStringField = stringFields.find(
     field => field in req.body && typeof req.body[field] !== 'string'
-  );
+    );
 
   if (nonStringField) {
     return res.status(422).json({
@@ -46,7 +80,7 @@ router.post('/', jsonParser, (req, res) => {
   const explicityTrimmedFields = ['username', 'password'];
   const nonTrimmedField = explicityTrimmedFields.find(
     field => req.body[field].trim() !== req.body[field]
-  );
+    );
 
   if (nonTrimmedField) {
     return res.status(422).json({
@@ -70,26 +104,26 @@ router.post('/', jsonParser, (req, res) => {
   };
   const tooSmallField = Object.keys(sizedFields).find(
     field =>
-      'min' in sizedFields[field] &&
-            req.body[field].trim().length < sizedFields[field].min
-  );
+    'min' in sizedFields[field] &&
+    req.body[field].trim().length < sizedFields[field].min
+    );
   const tooLargeField = Object.keys(sizedFields).find(
     field =>
-      'max' in sizedFields[field] &&
-            req.body[field].trim().length > sizedFields[field].max
-  );
+    'max' in sizedFields[field] &&
+    req.body[field].trim().length > sizedFields[field].max
+    );
 
   if (tooSmallField || tooLargeField) {
     return res.status(422).json({
       code: 422,
       reason: 'ValidationError',
       message: tooSmallField
-        ? `Must be at least ${sizedFields[tooSmallField]
-          .min} characters long`
+      ? `Must be at least ${sizedFields[tooSmallField]
+        .min} characters long`
         : `Must be at most ${sizedFields[tooLargeField]
           .max} characters long`,
-      location: tooSmallField || tooLargeField
-    });
+          location: tooSmallField || tooLargeField
+        });
   }
 
   let {username, password, firstName = '', lastName = ''} = req.body;
@@ -99,9 +133,9 @@ router.post('/', jsonParser, (req, res) => {
   lastName = lastName.trim();
 
   return User.find({username})
-    .count()
-    .then(count => {
-      if (count > 0) {
+  .count()
+  .then(count => {
+    if (count > 0) {
         // There is an existing user with the same username
         return Promise.reject({
           code: 422,
@@ -113,18 +147,18 @@ router.post('/', jsonParser, (req, res) => {
       // If there is no existing user, hash the password
       return User.hashPassword(password);
     })
-    .then(hash => {
-      return User.create({
-        username,
-        password: hash,
-        firstName,
-        lastName
-      });
-    })
-    .then(user => {
-      return res.status(201).json(user.serialize());
-    })
-    .catch(err => {
+  .then(hash => {
+    return User.create({
+      username,
+      password: hash,
+      firstName,
+      lastName
+    });
+  })
+  .then(user => {
+    return res.status(201).json(user.serialize());
+  })
+  .catch(err => {
       // Forward validation errors on to the client, otherwise give a 500
       // error because something unexpected has happened
       if (err.reason === 'ValidationError') {
@@ -140,8 +174,8 @@ router.post('/', jsonParser, (req, res) => {
 // verify this in the Mongo shell.
 router.get('/', (req, res) => {
   return User.find()
-    .then(users => res.json(users.map(user => user.serialize())))
-    .catch(err => res.status(500).json({message: 'Internal server error'}));
+  .then(users => res.json(users.map(user => user.serialize())))
+  .catch(err => res.status(500).json({message: 'Internal server error'}));
 });
 
 module.exports = {router};

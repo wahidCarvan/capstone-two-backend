@@ -1,11 +1,11 @@
 # Protek-Products
 ----
 
-A application built to buy and sell online the hassle free way.
+A application built to test product ideas before launch
 
 ## Motivation
 
-I love shopping and selling online. With the high fees the ecommerce sites sell it is not always to be productive. Another reason is there are many dishonest sellers, and buyers online which is a total turnoff. I would like to provide a platform where only sellers who have been throughly screened are able to sell.
+I love shopping and selling online. Products are not always a win win. This is why I made this app to see if the product will be a sucess or not before acutally ordering the item to sell
 
 
 ## Screenshots
