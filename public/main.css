@@ -20,12 +20,11 @@ header p {
 .hearts {
   padding-right: 20px; font-size: 20px
 }
-
+/*using flex box order lets us control the order in aligning*/
 .search-wishlist {
+  order: 2;
   padding: 20px;
   text-align: center;
-
-
 }
 
 h2 {
@@ -72,10 +71,23 @@ a {
   background-color: #28a745;
   cursor: pointer;
 }
+
+.add-to-cart:disabled {
+  background-color: white;
+  color: red;
+}
+
+
 .add-to-cart:hover {
   background-color: black;
   color: white;
  }
+
+ .add-to-cart:hover:disabled {
+  background-color: white;
+  color: red;
+ }
+
 .topnav {
     background-color: #2bb673;
     overflow: hidden;
@@ -172,15 +184,11 @@ a {
 }
 
 .logo {
+  order:1;
   text-align: left;
   color: #2bb673;
 }
 
-.search-box {
-  /*width: 100%;*/
-  text-align: center;
-
-}
 
 .log-in {
   text-align: right;
@@ -268,15 +276,37 @@ nav {
     padding: 5px;
 }
 
-footer {
+footer { 
+     position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /*padding: 5px;*/
+  text-align: center;
+  background-color: #2bb673;
+  color: white;
+  }
+/*footer {
+    
+    color: white;
+    font-size: 18px;
+    left: 0;
+    bottom: 0;
+   width: 100%;
+   margin: auto;
+}*/
+
+/*footer {
     text-align: center;
     background-color: #2bb673;
     color: white;
     font-size: 18px;
-      left: 0;
-   bottom: 0;
+    left: 0;
+    bottom: 0;
    width: 100%;
-}
+   margin: auto;
+}*/
+
 
  .product-images{
     width: 100%;
@@ -289,13 +319,18 @@ footer {
     width: 100%;
 }
 
+.left{
+  order: 3;
+}
+
 
 .navbar {
-  background-color: white;
-  color: #2bb673;
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(248,248,248,1);
--moz-box-shadow: 10px 10px 5px 0px rgba(248,248,248,1);
-box-shadow: 10px 10px 5px 0px rgba(248,248,248,1);
+    background-color: white;
+    color: #2bb673;
+    /* -webkit-box-shadow: 10px 10px 5px 0px rgba(248,248,248,1); */
+    -moz-box-shadow: 10px 10px 5px 0px rgba(248,248,248,1);
+    /* box-shadow: 10px 10px 5px 0px rgba(248,248,248,1); */
+    ): ;
 }
 
 
@@ -312,6 +347,7 @@ box-shadow: 10px 10px 5px 0px rgba(248,248,248,1);
 .row {
   width: 100%
 }
+
 
 }
 

@@ -19,7 +19,7 @@ const UserSchema = mongoose.Schema({
 
   firstName: {type: String, default: ''},
   lastName: {type: String, default: ''},
-  wishlist: [Product.schema],
+  wishlist: [String],
 });
 
 UserSchema.methods.serialize = function() {

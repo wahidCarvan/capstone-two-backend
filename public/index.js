@@ -194,11 +194,17 @@ function addToWishListHandler(){
 		$('main').on('click', '.add-to-cart', function(event){
 			console.log('add to was clicked');
 			const id = event.currentTarget.dataset.id;
+			console.log(id);
+			//disables the button after item was added to wish list to prevent
+			$(event.currentTarget).prop('disabled', true)
 			// grab the product with id add to cart
-			addToWishlist(id);
-			
+			addToWishlist(id, function (response){
+				alert("Item was added to wishlist");
+
+			}, function(error){
+				alert("Item was not added to wishlist, try again")
+			});
 		});
-		console.log('wish handler logged out');
 }
 
 // sucess and failure for the wish list

@@ -17,7 +17,7 @@ router.post('/:username/wishlist',jwtAuth, (req, res) => {
   if(req.params.username === req.user.username){
     const productId = req.body.productId;
     if(productId){
-    User.update({username: req.user.username}, {$push: {wishlist: ObjectId(productId)}}).then(() =>{res.status(204).end()})
+    User.update({username: req.user.username}, {$push: {wishlist: productId}}).then(() =>{res.status(204).end()})
 
     } else{
       res.status(400).json({
@@ -34,13 +34,11 @@ router.post('/:username/wishlist',jwtAuth, (req, res) => {
 })
 
 router.get('/:username/wishlist',(req, res) => { 
-  User.findOne({username: req.params.username}).populate('wishlist').then(populateUser => {
-    const wishlist = populateUser.wishlist.map(product =>{
-      return product.serialize()
-    })
-    res.json(wishlist)
-  })
-})
+  User.findOne({username: req.params.username}).then(user => {
+    res.json(user.wishlist)
+  }).catch(error => res.status(404).json({message: 'User not found, search again'}))
+});
+
 
 // Post to register a new user
 router.post('/', (req, res) => {

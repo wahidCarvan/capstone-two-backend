@@ -1,38 +1,4 @@
-
-//
-function addSearchFromHandler() {
-	$('form').submit(function(event){
-		event.preventDefault()
-		const userInput =$('#wish').val()
-		//call get wish list error function user not found
-		//success needs to be a console log.
-		//forEach the success what comes back from api to get products
-		//in get product its success needs to be the display product
-		//get all a list of product id 
-		// for each the list and run get product on each ones
-		// success call back for each product will be display product
-		// console.log step by step
-	})
-}
-
-
-function getWishList(username, success, error){
-	const settings =  {
-		url: `/users/${username}/wishlist`,
-		dataType: 'json',
-		type: 'GET',
-		success,
-		error
-	}
-}
-
-
 function getProduct(id, success, error){
-	// PRODUCTS = PRODUCTS.filter(function(product){
-		//return the ones the are not equal returns all the elements that are not deleted
-	// 	return id != product.id; 
-	// })
-	// success()
 	const settings = {
 		url: `/products/${id}`,
 		dataType: 'json',
@@ -40,14 +6,13 @@ function getProduct(id, success, error){
 		success,
 		error
 	}
-
+console.log(settings.url)
 	$.ajax(settings);
 
 }
 
 function displayProduct(product){
-
-	$('#product-details').append(`
+	$('.search-results').append(`
 		<div class="col-3">
 		<div class="card">
 		<img class="product-images" src="${product.image}" alt="place holder image"/>
@@ -64,61 +29,40 @@ function displayProduct(product){
 		</div>`);
 
 }
+function searchHandler(){
 
-// semantic html 
-// line 42 on wish html it needs to be added to where to go
-
-
-
-
-//TRYING TO DISPLAY THE SEARCH RESULTS TOT THE SCREEN
-// SEARCH FORM
-$('.search-wishlist').on('submit', function(event){
+$('#search-form').on('submit', function(event){
     event.preventDefault();
-    let searchCriteria = $('#wish').val(); 
+    let searchCriteria = $('#wish').val();
+    $('.search-results').empty(); 
+    $('#wish').val('');
+
     $.ajax({
         method : 'GET',
-        url : '/products/',
-        data : {
-        searchText : searchCriteria
-        },
+        url : `/users/${searchCriteria}/wishlist`,
         dataType : 'json',
         ContentType : 'application/json',
         success: function(data){
+        	console.log(data);
+        	data.forEach(function(item){
+        		getProduct(item, displayProduct, function(err){
+            console.error(err);
+        })
 
-	        let newHTML = "";
-
-	        for (let i = 0; i < data.length; i ++){
-	            newHTML += `
-	                    <div class="card">
-	                    		<img class="card-image" src="${data[i].image}"/>
-	                            <h1 class="cardName"> ${data[i].name} </h1>
-	                            <p class="cardDescriptyion"> ${data[i].description} </p>
-	                            <p class="cardPrice"> ${data[i].price} </p>
-	                     </div>
-	                        `;
-	        }
-
-	        $('.search-wishlist').html(newHTML);
-
+        	});
 	    },
         error : function(err){
-            console.log(err);
+            console.error(err);
+            $('.search-results').html
+            //needs to be styled
+            ('<p>User not found, search again</p>');
+
         }
+
     });
 })
 
-
-
-function watchSubmit() {
-  $('.search-wishlist').submit(event => {
-    event.preventDefault();
-    const queryTarget = $(event.currentTarget).find('');
-    const query = queryTarget.val();
-    // clear out the input
-    queryTarget.val("");
-    getDataFromApi(query);
-  });
 }
 
-$(watchSubmit);
+$(searchHandler);
+

@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- css links -->
 	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="stylesheet" href="float-grid.css"/>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- Bootstrap core CSS -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
@@ -16,7 +17,7 @@
 	</script>
 	<script type="text/javascript" src="renderProducts.js">
 	</script>
-	<script type="text/javascript" src="shoppingCart.js"></script>
+	<script type="text/javascript" src="wishlist.js"></script>
 </head>
 <body>
 	<header role="banner">
@@ -33,7 +34,7 @@
 					<p class="hearts">&hearts; Wish List &hearts;</p>
 			</span>
 			<div class="search-wishlist">
-				<form action="#">
+				<form id="search-form">
 					<h2>Search the wishlist</h2>
 					<fieldset>
 					</legend>
@@ -44,10 +45,11 @@
 			</form>
 		</div>
 	</nav>
+	<hr>
+	</main>
 	<section role="region" class="search-results"></section>
 	<footer role="contentinfo">
 		<p class="copy">&copy; 2018 Protek</p>
 	</footer>
-</main>
 </body>
 </html>

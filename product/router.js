@@ -24,13 +24,9 @@ router.get('/', (req, res) => {
 router.get('/:id',(req, res) => {
 	Product
 	//returns one findById
-	.findOne({_id:req.params.id})
+	.findById(req.params.id)
 	.then((doc) => {
-		if(!doc){
-			return res.status(400).json({error: "Try again"})
-		}
 		res.json(doc.serialize())
-
 	})
 	.catch((error) => {res.json(error)});
 

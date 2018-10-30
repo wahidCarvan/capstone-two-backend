@@ -136,7 +136,7 @@ body {
 }
 .container {
   margin: auto;
-    width: 50%;
+    /*width: 50%;*/
     padding: 20px;
 }
 
@@ -222,7 +222,7 @@ fieldset {
   border-radius: 3px;
   background: white;
   margin: 0 auto;
-  margin-top: 150px;
+  margin-top: 50px;
 }
 
 .signup-form legend {
@@ -324,15 +324,14 @@ button[type="submit"]:focus {
   font-weight: 600;
   border: 0;
   padding: 0;
-}
+}*/
 
 .footer a {
-  color: white;
+  position: absolute;
+  bottom: 0;
 }
 
-.footer a:hover {
-  color: #E7F1F9; 
-}*/
+
 
 /*end*/
 legend {
