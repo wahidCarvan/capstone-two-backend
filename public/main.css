@@ -63,13 +63,19 @@ h2 {
 hr {
   background-color: #f0f0f0;
 }
+
 a {
   color: white;
 }
+
 .add-to-cart {
   color: white;
   background-color: #28a745;
   cursor: pointer;
+  margin: 0 auto;
+  display: block;
+  /*margin-left: 33.33px;*/
+  /*text-align: center;*/
 }
 
 .add-to-cart:disabled {
@@ -187,6 +193,8 @@ a {
   order:1;
   text-align: left;
   color: #2bb673;
+  padding-bottom: 50px;
+  display: block;
 }
 
 
@@ -319,8 +327,8 @@ footer {
     width: 100%;
 }
 
-.left{
-  order: 3;
+.right {
+  order: 2;
 }
 
 
@@ -335,7 +343,7 @@ footer {
 
 
 /*everything that needs to be mobile friendly will go inside*/
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 600px) {
   form {
     width: 100%;
   }
@@ -348,13 +356,19 @@ footer {
   width: 100%
 }
 
-
-}
-
-@media only screen and (min-width: 640px) {
- .col-4 {
+.col-4 {
   width: 33.33%;
  }
 
+ .col-3 {
+  width: 100%;
  }
+
+}
+/*
+@media only screen and (min-width: 800px) {
+ 
+
+
+ }*/
 
