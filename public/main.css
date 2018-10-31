@@ -156,11 +156,13 @@ a {
   text-decoration: line-through;
 }
 /*NOT WORKING*/
-.our-price {
-  font: 50px;
+/*.our-price {
+  margin-left: 23px;
 }
-
-
+*/
+/*.right {
+  float: right;
+}*/
 
 /*back to top button*/
 .back-to-top {
@@ -328,7 +330,8 @@ footer {
 }
 
 .right {
-  order: 2;
+  /*order: 2;*/
+  text-align: center;
 }
 
 
@@ -343,7 +346,15 @@ footer {
 
 
 /*everything that needs to be mobile friendly will go inside*/
-@media only screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
+/*  form {
+    width: 100%;
+  }
+
+.container {
+  width: 100%;
+}
+*/
   form {
     width: 100%;
   }
@@ -352,23 +363,42 @@ footer {
   width: 100%;
 }
 
-.row {
-  width: 100%
-}
+.col-3 {
+        width: 100%;
+  }
 
-.col-4 {
-  width: 33.33%;
- }
-
- .col-3 {
+.card {
   width: 100%;
- }
+}
+
+.product-images {
+  width: 100%;
+}
+
+.card-title {
+  width: 100%;
+}
+
+.card-body {
+  width: 100%;
+}
+
+.card-text {
+  width: 100%;
+}
+
+.strikethrough-price  {
+  width: 100%;
+}
+
+.our-price {
+  width: 100%;
+}
+
+main {
+  width: 100%;
+}
 
 }
-/*
-@media only screen and (min-width: 800px) {
- 
 
-
- }*/
 

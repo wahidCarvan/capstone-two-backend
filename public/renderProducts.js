@@ -9,8 +9,8 @@ function getAndDisplayProducts(){
 					 	<h5 class="card-title">${product.name}</h5>
 						<div class="card-body">
 						    <p class="card-text">
-						    	<h5 class="card-title">${product.description}</h5>
-						    <span class="strikethrough-price">${product.originalPrice}</span>
+						    	<p class="card-description">${product.description}</p>
+						    <span class="strikethrough-price">$${product.originalPrice}</span>
 						    <br>
 						    <span class="our-price">$${product.price}</span></p>
 						    <button class="add-to-cart" data-id="${product.id}">Add to wishlist</button>

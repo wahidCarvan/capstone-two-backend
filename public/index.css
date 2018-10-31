@@ -71,9 +71,12 @@ form {
 
 .strikethrough-price {
    text-decoration: line-through;
+   margin-left: 25px;
 }
 
-
+.our-price {
+  margin-left: 25px;
+}
 
 
 header {
@@ -91,6 +94,9 @@ header button {
 
 }
 
+.card-description {
+  text-align: center;
+}
 
 
 fieldset {
@@ -106,6 +112,8 @@ ul {
   color: black;
   text-align: center;
   height: 48px;
+  font-size: 20px;
+  text-decoration: underline;
 }
 
 /*.add-to-cart {
@@ -484,7 +492,7 @@ legend {
 
 
 /*everything that needs to be mobile friendly will go inside*/
-@media only screen and (max-width: 640px) {
+@media screen and (max-width: 500px)  {
   form {
     width: 100%;
   }
@@ -493,8 +501,43 @@ legend {
   width: 100%;
 }
 
+.col-3 {
+    width: 100%;
+  }
 
-
+.card {
+  width: 100%;
 }
+
+.product-images {
+  width: 100%;
+}
+
+.card-title {
+  width: 100%;
+}
+
+.card-body {
+  width: 100%;
+}
+
+.card-text {
+  width: 100%;
+}
+
+.strikethrough-price  {
+  width: 100%;
+}
+
+.our-price {
+  width: 100%;
+}
+
+main {
+  width: 100%;
+}
+}/*closes the the opening brack*/
+
+
 
  
